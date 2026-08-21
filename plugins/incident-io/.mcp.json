@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "incident_io": {
+      "type": "http",
+      "url": "https://mcp.incident.io/mcp"
+    }
+  }
+}

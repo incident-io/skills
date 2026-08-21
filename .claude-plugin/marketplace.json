@@ -1,0 +1,16 @@
+{
+    "name": "incident-io-skills",
+    "description": "Official incident.io plugins for AI agents.",
+    "owner": {
+        "name": "incident.io",
+        "url": "https://incident.io"
+    },
+    "plugins": [
+        {
+            "name": "incident-io",
+            "description": "Makes your agent fluent in incident.io: responding to and investigating incidents, working with on-call schedules and escalations, and authoring the operational content — runbooks, skills, and plugins — that incident.io investigations draw on. Bundles the official incident.io MCP server.",
+            "category": "devops",
+            "source": "./plugins/incident-io"
+        }
+    ]
+}
