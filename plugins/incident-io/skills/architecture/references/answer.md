@@ -12,30 +12,10 @@ Reduce the question to the system or identifier it's about: a service name, a ho
 a cluster, a bucket, a deployment. Keep both the literal identifier (for keyword search
 and grep) and the question phrasing (for semantic search).
 
-## 2. Search every surface that exists
+## 2. Search the places in order
 
-Check which surfaces exist in your session and search the ones that do, skipping absent
-ones without comment.
-
-**The current workspace.** Look for an architecture corpus in conventional locations:
-`architecture/`, `docs/architecture/`, or an architecture directory inside a skill
-(`skills/*/architecture/`). Start at
-its README — a well-formed corpus has a "Where do I look?" routing table that resolves
-most questions in one hop. Don't grep the tree before trying the map; the map exists so
-one hop finds the owning file. Grep only when the map misses.
-
-**Installed plugins.** Plugin content available to this session (in Claude Code, plugin
-trees live under the plugin root, for example `~/.claude/plugins/`). Look for
-architecture directories and their README maps the same way.
-
-**Your organization through incident.io.** Call `document_search` on your incident.io
-MCP connection — the identifier via `keywords`, the question via `queries`. Results
-carry a source `provider` and generated `tags`; architecture-shaped documents describe
-systems and infrastructure rather than procedures. Read candidates with `document_show`
-before trusting them.
-
-**Other providers' search tools**, when the session has them and the user has pointed
-you at them.
+[where-docs-live.md](where-docs-live.md) owns the places and the order — read it before
+searching, even when you think you know where the docs are.
 
 ## 3. Answer from the owning doc
 
@@ -53,7 +33,11 @@ you at them.
 
 ## 4. When the docs don't cover it
 
-Say so explicitly. Answer from other evidence if you have it — the workspace's own
+First make sure that is what happened. A place you couldn't reach is not a place with no
+docs, and reporting an unreachable corpus as a missing one sends someone to write a
+document that already exists. Name what you couldn't search.
+
+Once it's genuinely a gap, say so explicitly. Answer from other evidence if you have it — the workspace's own
 config, deploy manifests, service definitions — clearly labeled as "from the code, not
 the docs". Never silently substitute general knowledge for a missing doc.
 
@@ -65,6 +49,3 @@ see [write.md](write.md).
 
 - Read-only, always: this job explains; it never mutates, flips flags, or runs commands
   that change state.
-- Route, don't absorb: if the question is really "how do I fix this failure", ground the
-  component here, then hand over to the runbook that owns the failure (the `runbooks`
-  skill's Find job).

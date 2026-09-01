@@ -111,7 +111,7 @@ The epistemics are the part most worth copying:
   failure — and it's the moment to offer to write the missing one. A stalled execution
   pretending to progress is the failure.
 
-## Skills route to each other; they don't absorb
+## Skills route to each other; they don't do each other's jobs
 
 Skills pair along clean contracts — runbooks own procedures, architecture owns facts —
 and each side chains to the other rather than inlining it. The same applies inside a

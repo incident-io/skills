@@ -86,10 +86,25 @@ what the issue can't carry, like behavior that must not change. The changes are 
 file contents overlaid on the synced version in memory; nothing ships. Poll
 `extension_verify_show` until the status is complete.
 
-A plugin is not the only way in. Where the content is on a branch you have pushed but
-not merged, give the repository, the ref and a `mount_name` instead; where there is no
-plugin and no repository we can read, upload the tree with `extension_upload_url` and
-pass the `mount_name` alone. Both anchor to a feedback issue the same way.
+A plugin is not the only way in. Which of the three routes you take is decided by where
+the edit currently sits, so read your own state and take the one that matches.
+
+**Pushed to a branch** — give the repository, the ref and a `mount_name`. No file
+contents travel, because we read the branch ourselves, and a branch is the proposal
+already so it needs no `changes` at all. A protected main makes this the common case:
+merging is blocked, pushing is not.
+
+**Uncommitted, against a plugin that already exists** — name the plugin and pass the
+changed files as full contents, overlaid on its synced version in memory.
+
+**In no repository we can read** — build the tar, call `extension_upload_url`, then pass
+its `mount_name` alone. That tool's own description carries how to build the archive and
+how long the URL lasts.
+
+One case has a genuine choice rather than an answer: an edit that is *both* pushed and
+has a plugin can go either way. Take the branch there, because it carries no payload.
+
+All three anchor to a feedback issue the same way.
 
 Read the report the way this file reads feedback — as computed evidence with known
 limits:
@@ -148,3 +163,7 @@ expect to flip to `likely_resolved` and which will stay `open` despite being fix
 anything you needed and couldn't verify (content to supply, a connection to record),
 and what has to happen for the change to reach agents — landing, sync, and when
 feedback will show it.
+
+It is important to note which connector tool calls were overridden or simulated during
+verification so that the user understands which parts have been fully exercised and 
+which parts are not yet confirmed to be working.

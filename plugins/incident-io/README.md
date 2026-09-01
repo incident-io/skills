@@ -8,15 +8,18 @@ The plugin bundles the [official incident.io MCP server](https://docs.incident.i
 (`https://mcp.incident.io/mcp`), so installing it connects your agent to your incident.io
 workspace through a standard OAuth flow the first time a tool is used.
 
+Run these skills on Opus/Sol level or higher. Smaller models follow their
+workflows unreliably.
+
 ## Skills
 
 | Skill | What it does |
 |-------|--------------|
+| [extensions](./skills/extensions) | Understand and configure your incident.io agent estate: what plugins, skills, and connectors are, what's registered and connected today, and which mechanism solves a given problem — a skill, a runbook, an architecture doc, a connector, or a combination. Scaffolds and registers a plugin, then hands every specialised job to the skill that owns it. The entrypoint: load this first when working on extensions. |
 | [runbooks](./skills/runbooks) | Find, follow, write, and maintain runbooks wherever they live — your repo, your plugins, or providers like Notion and Confluence synced into incident.io. Find the runbook that owns a symptom, follow its read-only diagnostic flow, write new runbooks into the right home, and keep a corpus honest (curate from closed incidents, split bloated files, verify claims against the code). |
 | [architecture](./skills/architecture) | Answer estate questions — "how does X run", "what is Y", "where does Z live" — from architecture docs wherever they live, cited rather than guessed. And write those docs through an interview that pins down what each system actually is before anything is written. Pairs with runbooks: runbooks own procedures, architecture owns facts. |
 | [skill-authoring](./skills/skill-authoring) | Create and improve the skills in your own plugins — the ones incident.io's agents and your coding agents load. Author a new skill from concrete trigger examples, or improve an existing one from incident.io's per-skill usage feedback without undoing what the feedback credits. Carries the format rules and the empirical patterns that make skills get selected and followed. |
-| [init](./skills/init) | Walk a team through setting up their incident.io agent estate — and through growing it later. Inventory what exists (connections first), bootstrap architecture docs and runbooks through their skills, identify the two or three skills worth writing from what actually pages, scaffold a plugin, and register it. Safe to re-run: it states what already exists and creates only what's missing. |
-| [doctor](./skills/doctor) | Review the health of your incident.io agent estate and say what to fix, without fixing anything itself. Checks plugins and their skills end to end — sync failures, skills that load but don't get followed, feedback issues worth acting on, convention drift — and reports what it can't read honestly. Every finding routes somewhere: a brief for skill-authoring, a gap for init, or a dashboard page. Built to recur. |
+| [doctor](./skills/doctor) | Review the health of your incident.io agent estate and say what to fix, without fixing anything itself. Checks plugins and their skills end to end — sync failures, skills that load but don't get followed, feedback issues worth acting on, convention drift — and reports what it can't read honestly. Every finding routes somewhere: a brief for skill-authoring, or a dashboard page. Built to recur. |
 | [extensions-review](./skills/extensions-review) | Review what your extensions did over a window — the skill loads that made a real difference, each verified against the incident or conversation it happened in, plus the incidents no skill or runbook covered, turned into briefs for what to write next. Delivers as a chat thread, a document, or plain text, so it suits a scheduled digest. Doctor says whether the estate is healthy; this says what it actually did. |
 
 ## Connections

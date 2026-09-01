@@ -21,16 +21,21 @@ everything is fine, which is the goal.
 ## The shape of a run
 
 1. **Orient** — a fast pass, cheap reads only: where the session is, whether a plugin
-   lives here and corresponds to one the account knows, and what the account's own
-   health rollup says. Ends in a compact situating block the user sees within
-   seconds. → [references/orient.md](references/orient.md)
+   lives here and corresponds to one the account knows, what the account's own health
+   rollup says, and whether this agent's own install is current. Ends in a compact
+   situating block the user sees within seconds.
+   → [references/orient.md](references/orient.md)
 2. **Offer** — an interactive, unscoped invocation pauses on that block plus a short
    menu of the reviews that make sense from here, each with an honest cost signal,
-   and waits for the pick. A scoped invocation or a scheduled run skips the pause —
-   orient silently and go. The skip rules are in orient.md.
-3. **Review** — the chosen legs, below.
-4. **Report** — the situating block leads, findings are one-line entries with routes,
-   and the briefs carry the detail, per [references/report.md](references/report.md).
+   and waits for the pick. A scoped invocation skips the menu but still shows the
+   block; a scheduled run, with nobody there to read it, skips both. The skip rules
+   are in orient.md.
+3. **Review** — the chosen legs, below, with a progress stream reporting each step as it
+   completes so the run is legible while it runs.
+   → [references/progress.md](references/progress.md)
+4. **Report** — headlines name the main finding and summarize the rest. An optional
+   situating block adds context; short findings carry routes, and briefs carry the
+   detail. Follow [references/report.md](references/report.md).
 
 ## The legs
 
@@ -46,12 +51,14 @@ everything is fine, which is the goal.
   don't hold the content, and skill-shaped knowledge with no skill to live in.
   → [references/content-drift.md](references/content-drift.md)
 
-Run all three for a whole-estate review; run what the user picked otherwise.
+Run all three for a whole-estate review. A named plugin gets the Extensions and
+Content drift legs; Connections and telemetry contributes only its orient snapshot
+unless the user asks for that leg. For any other scope, run the legs the user named.
 
 ## Ground rules
 
 - **Propose-only, always.** Every finding becomes a route: an improvement brief for
-  the `skill-authoring` skill's improve job, a structural gap for the `init` skill, a
+  the `skill-authoring` skill's improve job, a structural gap for the `extensions` skill, a
   change in the plugin's repository, or a named dashboard page. Doctor stops at the
   hand-off — the report is the run's last act, and acting on a brief is a new job the
   user starts, never a continuation of this one.
@@ -64,9 +71,14 @@ Run all three for a whole-estate review; run what the user picked otherwise.
   Never pad a leg with speculation to look thorough.
 - **Healthy is a finding.** "All plugins synced, no actionable issues" is a complete
   and useful report line, not a failure to find something.
+- **The run is visible while it runs.** Review reports each step as it finishes, per
+  [references/progress.md](references/progress.md), so a review that takes minutes is
+  something the user can follow rather than wait out. Those lines are status; the
+  report restates everything and is what gets filed.
 
 ## What this skill is not for
 
-Setting the estate up or growing it — that's `init` (which routes here for reviews,
-as this skill routes there for gaps). Making the edits — that's `skill-authoring`.
-And incident response: doctor reviews the machinery agents use, not live incidents.
+Setting the estate up or growing it — that's `extensions` (which routes here for
+reviews, as this skill routes there for gaps). Making the edits — that's
+`skill-authoring`. And incident response: doctor reviews the machinery agents use, not
+live incidents.

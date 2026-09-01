@@ -12,8 +12,8 @@ enabled state, capabilities, the tools it exposes, and its connection status:
 - **A connection needing re-authentication is a finding**, routed to the dashboard's
   data sources page.
 - **Cross-check dependencies**: a telemetry dependency in a plugin's README
-  connections table that is absent or disabled is a real gap, routed to init or the
-  dashboard. A README row for a team's own tool (an internal MCP, a warehouse) may
+  connections table that is absent or disabled is a real gap, routed to extensions or
+  the dashboard. A README row for a team's own tool (an internal MCP, a warehouse) may
   legitimately not appear here — its absence alone is not a finding; and when a
   dependency is missing, name the question the team must answer ("is this actually
   consulted during incidents?") rather than answering it for them.

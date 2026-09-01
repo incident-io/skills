@@ -1,9 +1,9 @@
 # Architecture format
 
-The structural spec for architecture docs. Like the runbook format, it's guidance with a
-precedence rule: a corpus may carry its own FORMAT.md at its root, and when it does, the
-corpus's rules win. The consumers are a responder mid-incident and an agent grounding
-itself before it debugs — both need to find the owning file fast and trust what it says.
+The structural spec for architecture docs. It's guidance with a precedence rule: a
+corpus may carry its own FORMAT.md at its root, and when it does, the corpus's rules
+win. The consumers are a responder mid-incident and an agent grounding itself before
+it debugs — both need to find the owning file fast and trust what it says.
 
 The contract with runbooks: runbooks own *procedures* (how to diagnose and fix);
 architecture owns *facts* (what a thing is, where it runs, what it depends on). Each
@@ -77,8 +77,8 @@ already exists, the concern file carries the critical facts and a link, not a re
 Hard rules — a change that breaks one goes back.
 
 - **Facts, not procedures.** Steps to diagnose or fix belong in a runbook — link to it
-  by its exact title (the same chaining rule as the runbook format). Operational
-  *levers* may be named ("the lever is the per-org gate"), not walked.
+  by its exact title. Operational *levers* may be named ("the lever is the per-org
+  gate"), not walked.
 - **One fact once.** A fact lives in the file that owns its subject; everyone else
   links. Identifiers (project IDs, hostnames, pool names) may repeat — tables are
   lookups — but an *explanation* appearing twice means one copy is in the wrong file.
@@ -111,14 +111,12 @@ Hard rules — a change that breaks one goes back.
   the wrapper" a checkable claim.
 - **Chain out for failure modes.** Where a fact has a known way of breaking, link the
   owning runbook by its exact title.
-- **Plain language.** Short sentences, sentence-case headings, no color, no emoji — the
-  same voice as the runbook writing rules.
+- **Plain language.** Short sentences, sentence-case headings, no color, no emoji.
 
 ## Maintenance
 
 - **Change the doc in the change that changes the fact.** Moving a deployment, renaming
-  a cluster, or re-routing a path updates the owning doc in the same pull request — the
-  same rule runbooks follow for fixes.
+  a cluster, or re-routing a path updates the owning doc in the same pull request.
 - **Gaps are curation input.** When the Answer job (or a responder) finds a question
   these docs can't answer, that's a missing section to write, not an answer to
   improvise. Collect the gaps rather than losing them.

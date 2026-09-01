@@ -15,9 +15,74 @@ one or two at a time:
   in what order?"
 - "What does a finished answer look like? What must it always include?"
 
-Conclude when you can state: the trigger phrases, the procedure's shape, the tools it
-calls, and what the output must contain. If the requests turn out to be two unrelated
-jobs, that's two skills — say so now, not after drafting.
+### What a skill is for
+
+The examples say what the skill handles; the organization's own knowledge says how.
+A skill exists to give an already-capable agent the two things it can't derive:
+
+- **Domain expertise** — the judgment an experienced responder brings: what matters,
+  what to check first, how to read what comes back.
+- **Organization-specific knowledge** — how this team's systems are actually
+  arranged: which services report where, what maps to what, the real names of things.
+
+"Create a skill for X" names a topic and carries neither — it is never enough to
+draft from, and the gap is not yours to fill by guessing. The most common authoring
+failure is drafting without it: a user asks for "a skill for using Sentry" and never
+says how their organization actually uses Sentry — which services report to it, how
+projects are structured, what corresponds to what. A skill written without that
+context reads plausibly and helps nobody.
+
+### Load the context before drafting
+
+1. **The user's expertise.** How does this organization use the system? Which parts
+   matter, what maps to what, what does the team know that an outsider wouldn't?
+   Good looks like "checkout errors report to the `payments` project; `mobile`
+   belongs to another team" — not "we use Sentry for errors".
+2. **Existing reference material.** Where does written knowledge live — the
+   repository, Confluence or Notion, an existing skill or runbook? Good looks like a
+   page or runbook you can read directly, rather than the user retyping what they
+   remember of it.
+3. **Reach.** Are the systems the skill will cover behind a connection the agents can
+   actually call, with the auth it needs? Good looks like a named connection whose
+   tools you'll probe in step 3 — asked about now, so a missing one surfaces before
+   drafting starts, not after.
+
+### Exploration helps, but can't answer "what for"
+
+Some of this can be worked out rather than asked for: exploring the connected surface
+(step 3's probing) can turn up real organization-specific facts — which projects
+exist, undocumented states, traps in the data. Offer that exploration, and bring what
+it finds back as proposals to confirm ("there's one pipeline and it deploys production
+from master — is that the one this skill is about?"). But exploration only reveals
+what the systems are. What the skill is *for* — the situations it must handle, the
+procedure the team actually follows, the judgment an experienced responder would
+bring — only the user can supply. Probe findings feed the conversation; they never
+replace it.
+
+### Confirm the scope before drafting
+
+Conclude when you can state — and say where each part came from:
+
+- the trigger phrases
+- the procedure's shape
+- the tools it calls
+- what the output must contain
+- the organization-specific knowledge the skill will carry
+
+Anything sourced from your own exploration rather than the user is unconfirmed. Then
+propose the scope back — what the skill will handle, what it won't, what it leans
+on — and draft only on a yes.
+
+If the requests turn out to be two unrelated jobs, that's two skills — say so now,
+not after drafting. And when the user can't or won't supply the context, say plainly
+that the result will be generic and unlikely to help, and prefer not drafting over
+shipping it — a skill that adds nothing still costs selection every time it
+competes.
+
+Context the user supplies often contains facts about what a system *is* — where it
+runs, what it depends on, its real names. Those belong in the team's architecture
+docs, not buried in the skill: write them through the `architecture` skill's write job
+in the same change, and let the skill lean on the docs.
 
 ## 2. Check it doesn't already exist
 
@@ -183,3 +248,7 @@ and — once loads have been assessed — feedback appearing against it. Point t
 Say too what you couldn't verify: any surface this session couldn't reach, and the claim
 resting on it. That makes the gap a decision the team takes rather than an assumption
 buried in the skill.
+
+It is important to note which connector tool calls were overridden or simulated during
+verification so that the user understands which parts have been fully exercised and 
+which parts are not yet confirmed to be working.

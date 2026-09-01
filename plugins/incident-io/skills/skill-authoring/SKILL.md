@@ -50,8 +50,7 @@ rather than a report to a person.
 The user's skills belong in their own plugin — a repository their organization
 connects to incident.io — never in this one. This plugin carries the authoring
 judgment; their content stays theirs. When the user has no plugin yet, plugin setup
-is the `init` skill's job — route there, and come back to create the first skill once
-a plugin exists.
+is the `extensions` skill's job — route there, and come back to create the first skill.
 
 Editing happens wherever the session is: in a checkout of the plugin's repository (the
 common case — changes ride the team's review flow), or by handing the user finished

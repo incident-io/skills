@@ -9,23 +9,18 @@ listing. So the heart of this job is an interview, and the drafting comes second
 
 ## 1. Search first
 
-Never write before searching. Run the Answer job's surface search ([answer.md](answer.md)
-step 2) on each system name in scope — the workspace, installed plugins, and your
-organization's documents through incident.io. What exists shapes everything after: an
+Never write before searching. Run the search in
+[where-docs-live.md](where-docs-live.md) on each system name in scope, in the order it
+sets out. What exists shapes everything after: an
 existing doc means extending it, not writing a sibling, and the docs you find are
 evidence for the interview.
 
 ## 2. Resolve the home
 
-Same ladder as the `runbooks` skill's Write job:
-
-1. **An existing architecture corpus wins** — new docs join it, matching its layout and
-   its FORMAT.md if it carries one.
-2. **The user names a home** (a provider space, a specific directory) — confirm before
-   writing into an external system.
-3. **No corpus anywhere** → propose bootstrapping one: an `architecture/` directory with
-   a README map, structured per [format.md](format.md). Next to the code it describes is
-   the default that keeps it honest.
+The writing ladder in [where-docs-live.md](where-docs-live.md) decides this — read it
+before choosing, even when the answer looks obvious, because the right home depends on
+where the team's corpus already is and on who needs to read the result. Confirm the
+choice before writing into an external system.
 
 ## 3. The interview
 
@@ -95,11 +90,8 @@ line per system and links down for detail. Propose it when the pattern appears.
 
 ## 6. Check it will be found
 
-Same closing move as the `runbooks` skill's Write job: work out which surfaces will find
-the new docs (workspace, plugins, incident.io document sync), and if the home isn't
-connected to incident.io, say what would connect it. A test the user can run beats
-product knowledge: after the next sync, `document_search` for a distinctive identifier
-from the doc should return it.
+Run the closing check in [where-docs-live.md](where-docs-live.md): say which places will
+surface the new docs, and give the user a test they can run.
 
 ## Extending an existing corpus
 

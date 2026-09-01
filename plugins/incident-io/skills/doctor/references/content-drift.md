@@ -10,7 +10,7 @@ It reads whatever corpora the session can reach: the workspace's runbooks,
 architecture docs, and plugin skill trees, plus plugins via `extension_plugin_list`.
 Where a corpus is out of reach, the report says which pairs went unchecked.
 
-## The four checks
+## The checks
 
 Work per system (the pipeline, the database, the queue), pairing every artifact that
 speaks about it. Where the session can delegate, fan the systems out to sub-agents —

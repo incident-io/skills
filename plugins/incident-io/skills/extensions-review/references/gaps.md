@@ -96,7 +96,7 @@ to what acts on it:
   diagnostic path the investigation had to reconstruct.
 - A missing connection → the team's decision, made in the dashboard; the brief names
   the system and the questions it would have answered. Setting up structure from
-  nothing — a first plugin, a first corpus — is the `init` skill's job.
+  nothing — a first plugin, a first corpus — is the `extensions` skill's job.
 
 Briefs are proposals. The report delivers them; a human decides. Where the same gap
 was briefed in a previous review and declined, report it once as "previously

@@ -4,9 +4,8 @@ description: >
   Answer questions about how a team builds, deploys, and runs its software — what a
   system is, where it runs, what it depends on, and the real names of things (cloud
   projects, clusters, namespaces, hostnames, buckets) — from architecture docs wherever
-  they live: the current workspace, installed plugins, or the organization's documents
-  through incident.io. Also guides writing those docs: an interview that pins down what
-  each system actually is before anything is written. Use when asked "how does X run",
+  they live. Also guides writing those docs: an interview that pins down what each
+  system actually is before anything is written. Use when asked "how does X run",
   "what is Y", "where does Z live", when grounding a component before debugging it, or
   when asked to write or improve architecture documentation.
 argument-hint: "<an estate question to answer — or write to author architecture docs>"
@@ -32,33 +31,35 @@ and guides writing them.
   use are ambiguous, and boundaries are decisions the owner makes, not facts an agent
   infers. → [references/write.md](references/write.md)
 
+## Before you start
+
+Both jobs need to know which plugins exist. Load the `extensions` skill and have it
+map the estate first — which plugins are registered, where each lives, and their sync
+state. Come back with that map, then start the job.
+
+Skipping it doesn't fail loudly. It just means you searched the local half of the estate
+and reported it as the whole.
+
 ## Where this skill looks
 
-The same surfaces as its sibling `runbooks` skill, checked for existence and searched:
-
-1. **The current workspace** — conventional locations (`architecture/`,
-   `docs/architecture/`, or an architecture directory inside a skill,
-   `skills/*/architecture/`), starting at the corpus README's "Where do I look?" map
-   when one exists.
-2. **Installed plugins** — architecture directories inside plugin content available to
-   this session.
-3. **Your organization through incident.io** — `document_search` / `document_show` on
-   your incident.io MCP connection, covering docs synced from providers like Notion,
-   Confluence, and GitHub, plus repos and spaces your organization has connected.
-4. Any provider search tool the user points you at.
+Architecture docs live in four places, and the same system can be documented in more
+than one. [references/where-docs-live.md](references/where-docs-live.md) owns them:
+what each place is for, how to reach it, what it cannot show you, and the order to read
+and write in. Both jobs work from that file rather than assuming a location.
 
 ## The taxonomy
 
 Architecture docs work when they follow a small structural spec — systems are
 directories (one per thing responders reason about separately, regardless of repo
 layout), views are root files answering one cross-system question, estate services
-(observability, the data platform, CI) are directories whose README routes across their
-tools, the README is the map, and churny values are pointed at rather than copied. The spec lives in
-[references/format.md](references/format.md); a corpus may carry its own FORMAT.md,
-which takes precedence. [references/concerns.md](references/concerns.md) catalogs the
-recurring concerns (deployment, database, events, …) and the questions each file
-answers, and [references/examples/](references/examples/README.md) is a complete worked
-example corpus to calibrate depth against.
+(observability, the data platform, CI) are directories whose README routes across
+their tools, the README is the map, and churny values are pointed at rather than
+copied. The spec lives in [references/format.md](references/format.md); a corpus may
+carry its own FORMAT.md, which takes precedence.
+[references/concerns.md](references/concerns.md) catalogs the recurring concerns
+(deployment, database, events, …) and the questions each file answers, and
+[references/examples/](references/examples/README.md) is a complete worked example
+corpus to calibrate depth against.
 
 ## What this skill is not for
 

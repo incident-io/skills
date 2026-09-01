@@ -1,13 +1,11 @@
 # Triage skills
 
 A triage skill owns one subject — a system, a failure family, a signature — and carries
-the team's procedure for it. incident.io's investigations reach for one in the opening
-minutes of an incident: they read the installed skills' names and descriptions against
-the incident in front of them, and use the ones that own part of it.
+the team's procedure for it.
 
-How they use it is the platform's business and changes without notice. This file is the
-part that is yours: what a skill needs when the caller is an agent mid-incident rather
-than a person at a keyboard.
+How a caller finds and uses one is the platform's business and changes without notice.
+This file is the part that is yours: what a skill needs when the caller is an agent
+mid-incident rather than a person at a keyboard.
 
 Read [format.md](format.md) and [what-works.md](what-works.md) first — they carry the
 rules every skill follows. Nothing below repeats them; this is only the delta.
@@ -85,24 +83,26 @@ report. That changes two things.
 - **Say plainly when the answer is not there.** what-works.md's abstention rule matters
   more than usual: a confident guess made early gets built on.
 
-## A slow skill is a slow investigation
+## Round-trips cost time, depth does not
 
 Whatever reaches for your procedure is waiting on it, and during an incident that wait is
-paid by the people responding. Latency is a cost your skill owns, not something the caller
-absorbs for you. Every step earns its place or comes out.
+paid by the people responding. But the cost is in how many times your skill has to go and
+ask, not in how much it has to say. Time spent getting the question right tends to be
+repaid by the work nobody then has to redo.
 
 what-works.md's cost rule carries the mechanics: name which calls are expensive, rank on
 the cheap ones and confirm with the dear ones, and give every search a stop rule. Two
 things this caller adds:
 
-- **Aim for the fewest steps that answer the subject.** A procedure that could be three
-  queries and is twelve delays every conclusion behind it.
+- **Count the round-trips, not the words.** A procedure that could be three queries and is
+  twelve delays every conclusion behind it, however tersely it is written. Say which calls
+  can be made together, so a caller doesn't serialise what it could ask at once.
 - **Say where a step is slow, and what it buys.** Then a caller can skip it on its own
   judgement rather than discovering the cost midway.
 
-None of that means truncating a step that genuinely decides the answer — being fast is
-not the same as being brief. The test is whether a responder would thank you for the
-wait.
+So don't truncate a step that decides the answer, and don't pad one that doesn't. Being
+fast is not the same as being brief. The test is whether a responder would thank you for
+the wait.
 
 ## What earns the reach
 
@@ -120,9 +120,6 @@ wait.
 - **A skill with no stated subject.** "Incident triage" or "production issues" gives a
   caller nothing to match on. Applying to every incident is fine; saying nothing about
   what you do is not.
-- **A runbook in skill clothing.** A symptom-to-cause-to-fix document is content, and the
-  `runbooks` skill already finds and follows it wherever your team keeps it. Write the
-  runbook; it needs no skill wrapped around it.
 - **A skill that assumes a conversation.** Nobody is there to answer.
 - **A skill that re-runs what the caller already swept.** Those results are already in
   hand.
