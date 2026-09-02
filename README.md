@@ -22,19 +22,30 @@ In Claude Code:
 ## Layout
 
 ```
-.claude-plugin/marketplace.json   # the marketplace: lists the plugins below
+.claude-plugin/marketplace.json     # the marketplace: lists the plugins below
 plugins/
-  incident-io/                    # the incident.io plugin
-    .claude-plugin/plugin.json
-    .mcp.json                     # the official incident.io MCP server
-    skills/
+  incident-io/                      # the incident.io plugin
+    .claude-plugin/plugin.json      # Claude plugin format
+    .mcp.json                       # Claude format - the official incident.io MCP server
+    plugin.json                     # Agent Plugins 1.0 format
+    mcp.json                        # Agent Plugins 1.0 - the same MCP server
+    skills/                         # shared by both formats
 ```
 
-## Other agents
+## Two formats, one plugin
 
-The plugin format is Claude Code's, but skills are plain markdown: for other agents,
-reference a skill's `SKILL.md` from the tool's equivalent mechanism (for example Cursor
-rules, or an `AGENTS.md` pointer).
+This plugin is published in **both** the Claude and Agent Plugins 1.0 formats, so most
+agents can install it directly rather than through a workaround.
+
+| Format | Files |
+|--------|-------|
+| [Claude plugin](https://code.claude.com/docs/en/plugins) | `.claude-plugin/marketplace.json`, and `.claude-plugin/plugin.json` + `.mcp.json` inside the plugin |
+| [Agent Plugins 1.0](https://agent-plugins.org) | `plugin.json` + `mcp.json` at the plugin root |
+
+The `skills/` directory is shared by both formats by convention.
+
+If your agent reads neither format, you can point your tool's own mechanism at a skill's
+`SKILL.md`.
 
 ## Contributing
 

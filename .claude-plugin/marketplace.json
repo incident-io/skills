@@ -10,7 +10,15 @@
             "name": "incident-io",
             "description": "Makes your agent fluent in incident.io: responding to and investigating incidents, working with on-call schedules and escalations, and authoring the operational content — runbooks, skills, and plugins — that incident.io investigations draw on. Bundles the official incident.io MCP server.",
             "category": "devops",
-            "source": "./plugins/incident-io"
+            "source": "./plugins/incident-io",
+            "author": {
+                "name": "incident.io",
+                "url": "https://incident.io"
+            },
+            "homepage": "https://incident.io",
+            "repository": "https://github.com/incident-io/skills",
+            "license": "MIT",
+            "keywords": ["incident-response", "on-call", "investigations", "runbooks", "sre", "devops"]
         }
     ]
 }
