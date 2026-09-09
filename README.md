@@ -6,12 +6,52 @@ authoring the operational content our platform draws on.
 
 ## Installation
 
-In Claude Code:
+Most agents that support plugins can install ours straight from the repository. 
+Add incident-io/skills as a marketplace, or https://github.com/incident-io/skills 
+where the shorthand isn’t accepted, then install the incident-io plugin from it.
+
+Examples for specific harnesses:
+
+### Claude Code
+Install the plugin by running the following in a session:
 
 ```
 /plugin marketplace add incident-io/skills
 /plugin install incident-io@incident-io-skills
 ```
+
+### Cursor
+
+1. Open the plugin manager: from the command palette, run Open Plugins (you can also reach it from Customize in the sidebar).
+2. Add our marketplace: select Browse Marketplace, then Add Marketplace, and give it https://github.com/incident-io/skills.
+3. Install the plugin: everyone else finds the incident.io plugin in the marketplace and selects Install, choosing whether to install it for the project or for their user account.
+
+### Codex
+
+On Business and Enterprise plans, ask an admin to import our marketplace for everyone, from Admin → Plugins → Marketplaces.
+
+To install it yourself instead:
+```
+codex plugin marketplace add incident-io/skills
+codex plugin add incident-io@incident-io-skills
+```
+
+## Getting started with extensions
+
+This plugin helps you author incident.io Extensions plugins: the skills, runbooks, and
+architecture docs that incident.io investigations draw on. Once installed, invoke the
+`extensions` skill and describe what you want, or just say it in plain language and let
+the agent pick the skill that fits.
+
+Example prompts:
+
+```
+Load the extensions skill
+/incident-io:extensions I want to create a new incident plugin
+Help me write a new incident.io skill for triaging X
+```
+
+Read more in the [Extensions docs](https://docs.incident.io/investigations/extensions/overview).
 
 ## Plugins
 
@@ -22,29 +62,32 @@ In Claude Code:
 ## Layout
 
 ```
-.claude-plugin/marketplace.json     # the marketplace: lists the plugins below
+.claude-plugin/marketplace.json     # Claude marketplace: lists the plugins below
+.agents/plugins/marketplace.json    # Codex marketplace: the same plugins, Codex format
 plugins/
   incident-io/                      # the incident.io plugin
     .claude-plugin/plugin.json      # Claude plugin format
-    .mcp.json                       # Claude format - the official incident.io MCP server
+    .codex-plugin/plugin.json       # Codex plugin format
+    .mcp.json                       # Claude + Codex formats - the official incident.io MCP server
     plugin.json                     # Agent Plugins 1.0 format
     mcp.json                        # Agent Plugins 1.0 - the same MCP server
-    skills/                         # shared by both formats
+    skills/                         # shared by all formats
 ```
 
-## Two formats, one plugin
+## Three formats, one plugin
 
-This plugin is published in **both** the Claude and Agent Plugins 1.0 formats, so most
+This plugin is published in the Claude, Agent Plugins 1.0 and Codex formats, so most
 agents can install it directly rather than through a workaround.
 
 | Format | Files |
 |--------|-------|
 | [Claude plugin](https://code.claude.com/docs/en/plugins) | `.claude-plugin/marketplace.json`, and `.claude-plugin/plugin.json` + `.mcp.json` inside the plugin |
 | [Agent Plugins 1.0](https://agent-plugins.org) | `plugin.json` + `mcp.json` at the plugin root |
+| Codex plugin | `.agents/plugins/marketplace.json`, and `.codex-plugin/plugin.json` inside the plugin, sharing `.mcp.json` with the Claude format |
 
-The `skills/` directory is shared by both formats by convention.
+The `skills/` directory is shared by all formats by convention.
 
-If your agent reads neither format, you can point your tool's own mechanism at a skill's
+If your agent reads none of these formats, you can point your tool's own mechanism at a skill's
 `SKILL.md`.
 
 ## Contributing
