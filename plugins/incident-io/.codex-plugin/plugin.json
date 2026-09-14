@@ -1,6 +1,6 @@
 {
   "name": "incident-io",
-  "version": "0.15.0",
+  "version": "0.17.0",
   "description": "Makes your agent fluent in incident.io: responding to and investigating incidents, working with on-call schedules and escalations, and authoring the operational content — runbooks, skills, and plugins — that incident.io investigations draw on. Bundles the official incident.io MCP server.",
   "author": {
     "name": "incident.io",

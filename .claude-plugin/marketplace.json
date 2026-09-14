@@ -18,7 +18,23 @@
             "homepage": "https://incident.io",
             "repository": "https://github.com/incident-io/skills",
             "license": "MIT",
-            "keywords": ["incident-response", "on-call", "investigations", "runbooks", "sre", "devops"]
+            "keywords": ["incident-response", "on-call", "investigations", "runbooks", "sre", "devops"],
+            "relevance": {
+                "topic": "incident.io",
+                "signals": {
+                    "hosts": [
+                        "mcp.incident.io",
+                        "api.incident.io",
+                        "app.incident.io"
+                    ],
+                    "manifestDeps": [
+                        {
+                            "file": "[/\\\\](\\.mcp\\.json|mcp\\.json)$",
+                            "pattern": "mcp\\.incident\\.io"
+                        }
+                    ]
+                }
+            }
         }
     ]
 }

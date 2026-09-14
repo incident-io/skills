@@ -24,6 +24,17 @@ available two ways:
 Without either, work from what the user can tell you — but say the edit is unverified
 against usage data, and don't invent a funnel.
 
+A user often arrives with one issue copied from the dashboard: the plugin id and skill
+dir name, the issue's summary, theme, suggestion and quote, and usually its `issue_key`.
+Still load the full rollup for the skill and match the copied issue to its record by
+`issue_key`, or by summary and quote when the key wasn't given.
+
+The rollup doesn't link an issue to the loads that raised it. To see the runs behind
+one, ask the same tool for `include: ["examples"]` with `example_contribution: "hurt"`
+or use `extension_skill_usage_list` over the issue's `first_seen_at`/`last_seen_at` 
+window for every load rather than a sample. Both are per skill, not per issue, so 
+which of the returned runs raised this issue is an inference; say so when you rely on it.
+
 ## Read the feedback with these corrections
 
 The feedback is computed, and its failure modes are known. Apply all of these:
@@ -35,7 +46,10 @@ The feedback is computed, and its failure modes are known. Apply all of these:
 - **Verify each issue against the current tree before editing.** An issue's
   `target_file` and `target_quote` locate the content it was raised against — which may
   have moved or been rewritten since. An issue whose anchor no longer exists may be
-  fixed, superseded, or relocated; check before acting.
+  fixed, superseded, or relocated; check before acting. `target_file` is relative to
+  the plugin root, not the repository root: join it to the subpath in
+  `extension_plugin_list`'s `repository` field to find it in a checkout, and confirm
+  the checkout is the registered plugin before editing anything in it.
 - **A skill marked not-in-current-version was renamed or removed.** Its feedback is
   historical: the issues can still be valid against the renamed files, but the anchors
   won't point at editable paths. Map them across by hand.
@@ -54,7 +68,10 @@ The feedback is computed, and its failure modes are known. Apply all of these:
   issues cluster on underlying causes, and the cluster usually has one fix.
 - **Fix by the issue's `theme` field.** A `description_mismatch` lands in frontmatter; an
   `instruction_gap` in the body; a `capability_gap` needs a conditional path ("where
-  the session lacks X, do Y") rather than pretending the capability exists. A
+  the session lacks X, do Y") rather than pretending the capability exists — but first
+  check `extension_connector_list` for whether the capability the issue wants is
+  connected, missing, or withheld on purpose, and the issue's 
+  `detail.candidate_integration` proposes what would help in the abstract without knowing. A
   `broken_reference` is either a link to remove or a missing reference to create:
   create it only from content you can verify or the user supplies — ask for that
   content when the reference was doing real work, rather than silently dropping the
@@ -139,8 +156,9 @@ Some issues describe accepted tradeoffs — behavior the team chose, flagged as 
 problem by an assessment that couldn't know that. Don't edit the skill to appease the
 metric. Where the session has `extension_skill_feedback_update`, dismiss the issue —
 the plugin, the skill's dir_name, the issue's `issue_key` from the feedback list, and
-the reason — and it stops resurfacing; `reopen` undoes it. Where it doesn't, record
-the decision where the team will find it — the pull request, or a note the user
+the reason — and it stops resurfacing; `reopen` undoes it. Confirm with the user
+before dismissing because a dismissal is permanent. Where the session lacks the tool, 
+record the decision where the team will find it — the pull request, or a note the user
 chooses — and say the issue will keep resurfacing until someone dismisses it.
 
 ## Ship and confirm

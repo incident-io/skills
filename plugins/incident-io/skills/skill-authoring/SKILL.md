@@ -64,3 +64,8 @@ the `runbooks` and `architecture` skills in this plugin; a skill is instructions
 agent, not knowledge for a person. And reviewing all your plugins at once ("are our
 skills healthy?") is the `doctor` skill's job — this skill works one skill at a time,
 from evidence about that skill.
+
+## Ground rules
+- **Speak the user's language, not this skill's.** The user hasn't read this file so
+  say what you're doing plainly. Never cite a reference filename or similar detail 
+  to them, and use human-friendly names and titles rather than IDs.
