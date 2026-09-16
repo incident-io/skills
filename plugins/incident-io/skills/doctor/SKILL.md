@@ -63,9 +63,9 @@ unless the user asks for that leg. For any other scope, run the legs the user na
   hand-off — the report is the run's last act, and acting on a brief is a new job the
   user starts, never a continuation of this one.
 - **Verify before alarming.** A computed status is a hint, not a verdict: check an
-  issue's anchor against the current tree, and apply the reading corrections in
-  skill-authoring's [improve reference](../skill-authoring/references/improve.md)
-  before reporting an issue as real or resolved.
+  issue's anchor against the current tree, and apply the reading corrections from the
+  `skill-authoring` skill's improve reference before reporting an issue as real or
+  resolved.
 - **An unreadable surface is reported, not guessed.** Where this session has no way
   to read part of the estate, the report says so and names where the answer lives.
   Never pad a leg with speculation to look thorough.
