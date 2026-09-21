@@ -12,8 +12,9 @@ your-plugin/
 ├── README.md                  — the plugin's index: every skill, one row each
 ├── skills/
 │   └── <dir-name>/
-│       ├── SKILL.md           — frontmatter (name, description, optional client
-│       │                        extras like argument-hint) + the instructions
+│       ├── SKILL.md           — frontmatter (name, description, the provenance
+│       │                        stamp, optional client extras like argument-hint)
+│       │                        + the instructions
 │       └── references/        — detail loaded only when a job needs it
 └── incident.yaml              — optional: sync settings, rarely needed
 ```
@@ -38,6 +39,37 @@ your-plugin/
 - Size is enforced at sync: single files up to 1 MiB, the whole tree up to 20 MiB and
   500 files. Sync errors in the incident.io dashboard report violations, so trust those
   over this paragraph if they disagree.
+
+## The provenance stamp
+
+Every skill this plugin creates or edits carries the plugin's version in its
+frontmatter, under `metadata` — the key the skill format reserves for extra fields, so
+every client that validates frontmatter still accepts the file:
+
+```yaml
+---
+name: fulfillment
+description: >
+  Inspect and unstick Acme's order-fulfillment pipeline. ...
+metadata:
+  incident-io-plugin-version: "0.19.0"
+---
+```
+
+- **The value is this plugin's version, read from its manifest** — `plugin.json` at the
+  plugin root — never typed from memory. In Claude Code the root is
+  `${CLAUDE_PLUGIN_ROOT}`; anywhere else it is two directories above this skill's own
+  folder. Quote it: unquoted, `0.19` is a number to YAML.
+- **It means "last touched by".** Creating a skill writes it; improving a skill
+  refreshes it to the current version, and a skill that never had one gains one on its
+  first improve. So the estate converges with no separate sweep.
+- **What it does and doesn't say.** incident.io reads the stamp at sync and shows which
+  skills came through this flow, and with which version. It is a claim in a text file,
+  nothing more. Whether a skill *works* is a separate fact incident.io records from
+  verification runs against the skill's content — see the road test in create.md — and
+  the stamp is never used to decide it.
+- **Never write a stamp into a skill you didn't author or edit** in this session. The
+  stamp says the flow ran; a stamp on hand-written content is a false claim.
 
 ## The description is the trigger
 
@@ -194,7 +226,8 @@ this one a fact the request lacks.
 
 ## Declare dependencies in the README
 
-The plugin README owns two tables, updated in the same change as any skill:
+The plugin README owns two tables, updated in the same change as any skill (along with
+the skill's own provenance stamp, above):
 
 - **The skills table** — every skill directory, one row: name and what it does. This is
   the registry an agent reads first and the check a reviewer runs ("is the new skill

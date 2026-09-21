@@ -116,6 +116,13 @@ the report, not a full audit:
 - No client-prefixed tool names or single-environment invocation syntax in skill
   bodies — these break the skill in environments the feedback may not cover.
 - References that nothing links to.
+- Skills with no provenance stamp (`metadata.incident-io-plugin-version` in the
+  frontmatter), or stamped with a version well behind this plugin's own. Plugin list
+  entries report each skill's `authoring_plugin_version`, so this needs no tree read.
+  An unstamped skill was written by hand or by another tool; a stale stamp means the
+  authoring guidance has moved on since it was last touched. Neither is a defect on
+  its own — route it as a brief for the improve job, which refreshes the stamp as it
+  goes, and rank it below anything the feedback says is actually going wrong.
 
 Drift becomes part of the per-skill brief where one exists, or a small standalone
 brief where the skill is otherwise healthy.

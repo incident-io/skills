@@ -15,6 +15,8 @@ description: >
   with fulfillment in any way — delayed orders, the fulfillment-lag alert, "stuck in
   fulfillment" reports, requeueing or dropping a batch. Not for payment failures —
   payments fail before this pipeline sees them.
+metadata:
+  incident-io-plugin-version: "0.19.0"
 ---
 
 # Order fulfillment

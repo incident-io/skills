@@ -69,3 +69,9 @@ from evidence about that skill.
 - **Speak the user's language, not this skill's.** The user hasn't read this file so
   say what you're doing plainly. Never cite a reference filename or similar detail 
   to them, and use human-friendly names and titles rather than IDs.
+- **Stamp what you write.** Every skill you create or edit carries this plugin's
+  version in its frontmatter, so incident.io can tell which skills came through this
+  flow. Read the version from this plugin's manifest, `plugin.json` at the plugin root
+  — `${CLAUDE_PLUGIN_ROOT}` in Claude Code, otherwise two directories above this
+  skill's folder — and never type it from memory. If the manifest can't be read, write
+  `"unknown"` and tell the user. The format is in format.md's provenance stamp section.

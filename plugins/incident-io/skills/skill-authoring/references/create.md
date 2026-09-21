@@ -153,6 +153,10 @@ picture. The rules that matter most for a new skill:
   with X"), add the two or three signals from step 1 that only this skill matches, and
   keep it to a few sentences — activation comes from the subject, not from enumerating
   phrasings.
+- Stamp the frontmatter with this plugin's version under `metadata`, per the provenance
+  stamp section of [format.md](format.md): read the version from the plugin manifest,
+  quote it, never type it from memory. This is how incident.io knows the skill came
+  through this flow.
 - Name connections and bare tools, arguments as data — never an invocation syntax;
   telemetry names its datasource, never the tool that runs the query.
 - Write the abstention path: what the skill says when the tools come back empty or the
@@ -217,7 +221,9 @@ to the user to try in a new session, and ship after their run rather than before
 
 In the same change: add the skill's row to the plugin README's skills table, and a
 connections-table row for any new connection it calls, per the registration rules in
-[format.md](format.md). This step is not optional polish.
+[format.md](format.md). This step is not optional polish. Before proposing the change,
+check the provenance stamp is present and carries the version you read from the
+manifest — a road test that rewrote the frontmatter can drop it.
 
 ## 7. Ship it and confirm it arrived
 
