@@ -77,8 +77,10 @@ orientation found, never a fixed list — each with an honest cost signal:
   their anchors and clustered into briefs. Between the two.
 - **Everything** — all applicable legs, the full report.
 
-Then stop: the block plus the menu is the reply, and the user's pick starts the
-review. Don't start gathering while they decide.
+Mark one as recommended — whichever the rollup flagged; the local plugin's deep review
+where nothing did — and end with `**Next step:** pick a review — <recommended> is
+what I'd run`. Then stop: the block plus the menu is the reply, and the user's pick
+starts the review. Don't start gathering while they decide.
 
 ## When to skip the offer
 

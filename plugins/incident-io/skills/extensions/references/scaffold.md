@@ -10,13 +10,13 @@ a plugin, everything below reduces to: put new skills in it, fix anything the es
 walk flagged (sync errors), and re-sync. Never create a second plugin beside a
 working one without the user asking for it.
 
-Registration needn't come first. For a first-time setup the estate walk
-([estate.md](estate.md)) orders it after the first skill is drafted and verified —
-skill-authoring's road-test step has the mechanics for testing an unregistered tree.
-The steps below land it once the skill has passed. A user who wants the plugin set up
-empty, with content to follow, gets exactly that — register the scaffold without
-comment; an empty plugin needs the `.claude-plugin/plugin.json` manifest, since with
-no skill there's nothing else for the sync to find.
+Registration needn't come first. For a first-time setup it comes after the first skill
+is drafted, tried out and merged to the default branch — [estate.md](estate.md)'s
+milestones section has the order and why. The steps below land it once that's done. A
+user who wants the plugin set up empty, with content to follow, gets exactly that —
+register the scaffold without comment; an empty plugin needs the
+`.claude-plugin/plugin.json` manifest, since with no skill there's nothing else for the
+sync to find.
 
 ## 2. Resolve the home
 
@@ -76,8 +76,7 @@ say what goes in them.
 
 The structural rules — directory names as identity, descriptions as triggers,
 environment-neutral tool naming, what goes in the README's two tables — are the
-`skill-authoring` skill's format reference
-([../../skill-authoring/references/format.md](../../skill-authoring/references/format.md)).
+`skill-authoring` skill's format reference.
 Hold the scaffold to it from the first file: retrofitting conventions is how registries
 drift. The skills themselves are drafted through `skill-authoring`'s create job.
 
@@ -126,5 +125,4 @@ assuming pickup.
 
 Scaffolding is usually one exit from the estate walk. Return to
 [estate.md](estate.md), continue any remaining checks, and record what was created in
-its estate report — that section owns the report's shape, including offering to keep
-it in the plugin's repository so the next run sees what was already considered.
+its estate report — that section owns the report's shape and where it's kept.

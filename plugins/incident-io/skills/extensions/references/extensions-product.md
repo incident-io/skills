@@ -73,9 +73,10 @@ containing at least one `SKILL.md` — at the repository root or under a subpath
 
 - Skills are read-only to incident.io: it never writes to the repository, and an
   investigation can't change a skill based on what it learns.
-- Plugins re-sync on a schedule, and can be synced on demand. Each sync records the
-  commit it read, so it's always possible to tell which version of a skill an
-  investigation followed.
+- Plugins re-sync on a schedule, and can be synced on demand. A sync reads the
+  repository's default branch, so a skill still on a branch isn't there to pick up.
+  Each sync records the commit it read, so it's always possible to tell which version
+  of a skill an investigation followed.
 - Skill selection is either automatic (every skill in the current version, including
   newly-synced ones) or an explicit allowlist — under an allowlist, a skill merged
   later stays off until someone enables it, so a merge can't quietly change agent

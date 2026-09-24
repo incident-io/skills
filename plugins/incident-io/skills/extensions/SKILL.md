@@ -2,9 +2,10 @@
 name: extensions
 description: >
   Understand the extensions so that you can help a user configure and manage
-  their incident.io agent estate. Use this when you're asked a question about incident.io 
-  plugins, skills, connectors or MCPs ("I want to setup an incident plugin", "How do I 
-  add a triage skill?"), or when you need to understand the user's existing configuration
+  their incident.io agent estate. Use whenever you're working with incident.io plugins,
+  skills, connectors or MCPs in any way ("I want to set up an incident plugin"), when
+  someone new wants to give incident.io's agents their own knowledge and doesn't yet
+  know the pieces, or when you need to understand the user's existing configuration
   before editing a plugin or skill.
 ---
 
@@ -15,9 +16,11 @@ Opus/Sol level or higher; smaller models follow them unreliably. If this session
 below that level, tell the user and recommend switching model before continuing.
 
 Extensions are how an organization gives incident.io's agents its own tools and
-instructions. There are two kinds: **plugins** — directories of skills synced from the
-organization's repositories, which agents load and follow — and **connectors** — MCP
-servers whose tools agents can call.
+instructions. A **skill** is a short set of instructions an agent follows for one job.
+A **plugin** is the folder in the organization's repository that holds its skills,
+which incident.io reads. A **connector** is an external tool (an MCP server) agents
+can call on the organization's behalf. Use these sentences when a user first meets
+each term.
 [references/extensions-product.md](references/extensions-product.md) explains how the
 system works; read it before answering questions about it or changing anything.
 
@@ -55,6 +58,45 @@ starts before both.
 - **Review the estate's health** ("is our setup healthy? what's degraded?") → the
   `doctor` skill
 
+## How to talk to the user
+
+Two kinds of first message; tell them apart:
+
+- **A firm brief** — a mechanism and a target are named ("a triage skill for checkout
+  5xx", "register the plugin under `ops/agent`"). Follow it.
+- **Exploring** — "we want to set this up", "what should we do first?", a system named
+  with no mechanism. Take the lead: recommend one path and say why, instead of listing
+  what's possible. [references/estate.md](references/estate.md)'s from-scratch entry has
+  the default and how to pick it.
+
+While you're driving a job — setting something up, writing or fixing a skill — each
+reply has this shape; a one-off question gets a plain answer:
+
+```markdown
+<the answer — a few sentences, in the user's words>
+
+**Progress**
+- [x] <done>
+- [ ] <this reply's step> ← now
+- [ ] <still to come>
+
+**Next step:** <one action for the user — what it unblocks>
+```
+
+The list is fixed once agreed — same items, same words, same order; only the ticks
+move. If the plan changes, say so and change it once.
+
+Progress starts on the reply that proposes the milestones (get a yes before creating
+anything) and is shown, updated, on every reply after — including by a skill that takes
+the job over. Before then: answer and Next step.
+[references/estate.md](references/estate.md)'s milestones section has the sequence.
+
+Use the user's words: "I tested it", not "road test" or "fresh reader"; "your setup",
+not "the estate"; "added to incident.io", not "registered"; "incident.io has picked up
+your changes", not "synced". Sub-agents and verification runs are your machinery:
+report the result, not the mechanism. The plugin's talking-to-the-user doc, which
+estate.md links, has the full table.
+
 ## Ground rules
 
 - **Ground before proposing.** Grounding means two things, and target-system
@@ -75,10 +117,7 @@ starts before both.
   Everything else (architecture docs, runbooks, more skills) is a recommendation:
   explain why it produces better results, then respect the user's choice. A narrow
   use case gets a narrow setup, not the full walk's ambitions.
-- **Speak the user's language, not this skill's.** The user hasn't read this file —
-  never cite "the ground rules", a reference filename, or "the estate walk" at them.
-  Say what you're doing plainly ("I'm checking your configuration before we get
-  started") and end a read-only pass with an offer of what you can help with next.
+- **Speak the user's language, not this skill's** — "How to talk to the user" above.
 - **Connections are created in the dashboard, never here.** Connecting a tool to
   incident.io is an authentication flow. Where a gap is found, link the user to the
   dashboard's Extensions page and continue with what exists.

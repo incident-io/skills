@@ -230,8 +230,8 @@ manifest — a road test that rewrote the frontmatter can drop it.
 How the skill reaches agents depends on the session:
 
 - **Working in the plugin's repository** (the common case): commit on a branch and
-  propose a pull request per the team's flow. The plugin syncs from the repository, so
-  the skill goes live when the change lands on the synced branch. Where the checkout
+  propose a pull request per the team's flow. The plugin syncs from the repository's
+  default branch, so the skill goes live when the change lands there. Where the checkout
   can't be committed from this session, edit in place and tell the user exactly what
   to land and how.
 - **The session has the incident.io connection's extension tools**: after the change
@@ -245,11 +245,31 @@ If the plugin uses a skill allowlist rather than automatic selection (a setting 
 plugin's page in the incident.io dashboard), a new skill also needs enabling there —
 say so rather than assuming automatic pickup.
 
+### Hand over for review
+
+When you hand over the pull request, say in a few lines what to check — in the voice
+[talking-to-the-user.md](../../../docs/talking-to-the-user.md) sets:
+
+- **Facts, not wording.** Give them step 3's claims list to tick off — every name,
+  tool, data source, number and owner the skill states, and how each was checked. Edit a
+  sentence only when it reads two ways or is false; the reader is an agent.
+- **The description, as the trigger it is.** Would they want this skill used in the
+  situations it names, and only those?
+- **The procedure, as if on call.** A step that makes them ask "which one?" or "how?"
+  is where the agent will guess — fix the line.
+
+Once they've checked those, they merge. For a first skill, the plugin is added to
+incident.io after the merge — the `extensions` skill's job, and it says why the order
+matters.
+
 ## 8. Say how you'll know it worked
 
-End by telling the user what evidence to expect: the skill loading on matching requests,
-and — once loads have been assessed — feedback appearing against it. Point them at the
-[improve](improve.md) job for the follow-up, once the skill has seen real use.
+End by telling the user what happens after the merge, in their words: the skill's page
+in the incident.io dashboard (and the plugin's, across all its skills) shows each time
+an incident used it, whether it helped, and what went wrong — empty until a matching
+incident happens, which is normal in the first days. To fix a problem, they bring it
+back to a session with the incident.io skills loaded; the [improve](improve.md) job
+edits the skill from that evidence.
 
 Say too what you couldn't verify: any surface this session couldn't reach, and the claim
 resting on it. That makes the gap a decision the team takes rather than an assumption

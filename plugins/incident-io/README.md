@@ -40,6 +40,8 @@ epistemics that keep produced content honest. [docs/philosophy.md](./docs/philos
 describes the pattern; new skills are judged against it.
 [docs/agent-environments.md](./docs/agent-environments.md) maps the environments the
 skills run in — filesystem layouts, tools per capability, and the shared search strategy.
+[docs/talking-to-the-user.md](./docs/talking-to-the-user.md) sets how every skill speaks
+to the person in the session.
 
 ## Where your content lives
 

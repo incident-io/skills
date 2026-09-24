@@ -2,7 +2,8 @@
 
 Every doctor run uses this shape. `## Headlines` gives the answer, the optional
 situating block adds context, short findings name each problem and its route, and
-briefs hold the detail.
+briefs hold the detail. Anything said to the user around it follows
+[talking-to-the-user.md](../../../docs/talking-to-the-user.md).
 
 ## Format
 

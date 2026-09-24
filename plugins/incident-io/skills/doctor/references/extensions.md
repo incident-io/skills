@@ -77,8 +77,7 @@ Issues arrive most-actionable-first, but doctor's job is triage, not transcripti
   they were. Neither supports the "previously declined" label.
 - Verify each issue's anchor (`target_file`, `target_quote`) against the plugin's
   current tree before reporting it — apply the "Read the feedback with these
-  corrections" section of skill-authoring's
-  [improve reference](../../skill-authoring/references/improve.md), including its
+  corrections" section of the `skill-authoring` skill's improve reference, including its
   distrust of `likely_resolved` (the rest of that file is edit-mode material; doctor
   stops at the brief). An issue that verifies becomes one line in a brief; an issue
   that doesn't is noted as probably stale, not escalated. If either anchor is absent,
@@ -106,8 +105,8 @@ record, and a caution against repeating it casually.
 
 ## 5. Convention drift
 
-Spot-check each plugin's tree against skill-authoring's
-[format reference](../../skill-authoring/references/format.md) — this is a sample for
+Spot-check each plugin's tree against the `skill-authoring` skill's format reference —
+this is a sample for
 the report, not a full audit:
 
 - Every skill directory registered in the plugin README's skills table; connections

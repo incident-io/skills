@@ -24,6 +24,9 @@ choice before writing into an external system.
 
 ## 3. The interview
 
+Run it in the voice [talking-to-the-user.md](../../../docs/talking-to-the-user.md)
+sets — one question at a time, carrying what it turns on.
+
 Work system by system. For each system name the user uses, before writing anything:
 
 **Enumerate the candidate referents you can actually see.** Ground every question in

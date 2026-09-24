@@ -47,5 +47,8 @@ see [write.md](write.md).
 
 ## Rules
 
+- Reply in the voice [talking-to-the-user.md](../../../docs/talking-to-the-user.md)
+  sets: lead with the answer, short, one next step where there is one.
+
 - Read-only, always: this job explains; it never mutates, flips flags, or runs commands
   that change state.

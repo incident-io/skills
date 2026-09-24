@@ -66,9 +66,31 @@ skills healthy?") is the `doctor` skill's job — this skill works one skill at 
 from evidence about that skill.
 
 ## Ground rules
-- **Speak the user's language, not this skill's.** The user hasn't read this file so
-  say what you're doing plainly. Never cite a reference filename or similar detail 
-  to them, and use human-friendly names and titles rather than IDs.
+- **Speak the user's language, not this skill's.** The user may not have read this
+  file; say what you're doing plainly. While you're driving a job, each reply has this
+  shape — a one-off question gets a plain answer:
+
+  ```markdown
+  <the answer — a few sentences, in the user's words>
+
+  **Progress**
+  - [x] <done>
+  - [ ] <this reply's step> ← now
+  - [ ] <still to come>
+
+  **Next step:** <one action for the user — what it unblocks>
+  ```
+
+  The list is fixed once agreed — same items, same words, same order; only the ticks
+  move. If the plan changes, say so and change it once.
+
+  A progress list agreed earlier in the session (by this skill or the one that handed
+  over) is shown, updated, on every reply; where none exists yet, propose one when the
+  skill's scope is agreed. Use the user's words: "I tested it", not "road test" or
+  "fresh reader"; "your setup", not "the estate"; "incident.io has picked up your
+  changes", not "synced". Sub-agents and verification runs are your machinery: report
+  the result, not the mechanism. The plugin's talking-to-the-user doc, which create.md
+  and improve.md link, has the full table.
 - **Stamp what you write.** Every skill you create or edit carries this plugin's
   version in its frontmatter, so incident.io can tell which skills came through this
   flow. Read the version from this plugin's manifest, `plugin.json` at the plugin root

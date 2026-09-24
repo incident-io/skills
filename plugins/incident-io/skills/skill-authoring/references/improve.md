@@ -19,7 +19,8 @@ available two ways:
   `followed` — contribution verdicts, and distinct issues and strengths,
   most-actionable first. Assessment runs only once a load's run is scored, so the
   assessed count trails the usage count; the funnel covers assessed loads.
-- **In the dashboard**, on the plugin's page, when the session lacks the tool.
+- **In the dashboard**, on the plugin's page or the skill's own page, when the session
+  lacks the tool.
 
 Without either, work from what the user can tell you — but say the edit is unverified
 against usage data, and don't invent a funnel.
@@ -168,8 +169,10 @@ Before shipping, refresh the skill's provenance stamp to this plugin's current v
 from the plugin manifest). A skill that never had one gains one now: the stamp records
 which version of this plugin last touched the file, and this edit is that touch.
 
-Same as [create.md](create.md) step 7: land the change through the team's flow, sync
-(or say a sync is needed), and re-read the feedback afterwards. Where the fix was
+Same as [create.md](create.md) step 7, including its hand-over for review — with two
+extra checks for an improve change: the verification id and issue key are recorded, and
+the credited strengths survived. Land the change through the team's flow, sync (or say
+a sync is needed), and re-read the feedback afterwards. Where the fix was
 verified, record the verification's id in the change — the pull request or commit —
 so the review can see what was tested and what the evidence was. Issues whose quoted
 text your edit changed should flip to `likely_resolved`; an issue fixed without
@@ -180,7 +183,10 @@ is assessed by next week's loads, not immediately.
 
 ## The report
 
-End the job with a short account the team can act on: the edits made and why (issue by
+End the job with a short account the team can act on, in the voice
+[talking-to-the-user.md](../../../docs/talking-to-the-user.md) sets — the issue-by-issue
+detail goes in the pull request description; the reply carries the headline and what
+happens next: the edits made and why (issue by
 issue: fixed, won't-fix with the recorded reason, or superseded), which issues you
 expect to flip to `likely_resolved` and which will stay `open` despite being fixed,
 anything you needed and couldn't verify (content to supply, a connection to record),
