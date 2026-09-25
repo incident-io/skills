@@ -6,27 +6,31 @@ Official [incident.io](https://incident.io) skills plugin to help you author and
 
 <details>
 <summary>Claude Code</summary>
-Start a new session and then run the following:
+
+Our plugin is in Claude's official [marketplace](https://claude.com/marketplace/plugins/incident-io), which you can install by running :
 
 ```
-/plugin marketplace add incident-io/skills
+/plugin install incident-io@claude-plugins-official
 ```
 
-```
-/plugin install incident-io@incident-io-skills
-```
+For a team, an administrator can add our plugin to your organization’s plugin library on claude.ai, which syncs it to everyone’s sessions.
 
-```
-/reload-plugins
-```
+Claude's official marketplace auto-updates, so you’ll pick up new skills as we ship them. If you have manually installed it from git previously, you will need to enable auto-updates. To do so, see Claude Code's [configure auto-updates](https://code.claude.com/docs/en/plugins/install#keep-plugins-updated)
+
 </details>
 
 <details>
 <summary>Cursor</summary>  
 
-1. Open the plugin manager: from the command palette, run Open Plugins (you can also reach it from Customize in the sidebar).
-2. Add our marketplace: select Browse Marketplace, then Add Marketplace, and give it https://github.com/incident-io/skills.
-3. Install the plugin: everyone else finds the incident.io plugin in the marketplace and selects Install, choosing whether to install it for the project or for their user account.
+Our plugin is in the [Cursor marketplace](https://cursor.com/marketplace/incident.io), which you can install by running :
+
+```
+/add-plugin incident-io
+```
+
+You can also install it from the Cursor IDE. Use this [deeplink](cursor://anysphere.cursor-deeplink/plugin/add?id=59966080), or open **Customize** in the sidebar, find the incident.io plugin, and select **Install**, choosing whether to install it for the project or for your user account.
+
+Cursor syncs daily when you install from the official marketplace, so you'll pick up new skills as we ship them
 </details>
 
 <details>
@@ -41,6 +45,8 @@ codex plugin marketplace add incident-io/skills
 ```
 codex plugin add incident-io@incident-io-skills
 ```
+
+Codex syncs daily when a workspace admin imports our marketplace, and an admin can select Sync now under Admin → Plugins → Marketplaces to expedite it. If you added the marketplace yourself, run codex plugin marketplace upgrade to pull a new version.
 </details>
 
 <details>
