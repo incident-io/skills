@@ -7,7 +7,7 @@ Official [incident.io](https://incident.io) skills plugin to help you author and
 <details>
 <summary>Claude Code</summary>
 
-Our plugin is in Claude's official [marketplace](https://claude.com/marketplace/plugins/incident-io), which you can install by running:
+Our plugin is in Claude's official [marketplace](https://claude.com/marketplace/plugins/incident-io), which you can install by running :
 
 ```
 /plugin install incident-io@claude-plugins-official
@@ -22,7 +22,7 @@ Claude's official marketplace auto-updates, so you’ll pick up new skills as we
 <details>
 <summary>Cursor</summary>  
 
-Our plugin is in the [Cursor marketplace](https://cursor.com/marketplace/incident.io), which you can install by running:
+Our plugin is in the [Cursor marketplace](https://cursor.com/marketplace/incident.io), which you can install by running :
 
 ```
 /add-plugin incident-io
