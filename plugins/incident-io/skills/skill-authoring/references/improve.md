@@ -196,3 +196,8 @@ feedback will show it.
 It is important to note which connector tool calls were overridden or simulated during
 verification so that the user understands which parts have been fully exercised and 
 which parts are not yet confirmed to be working.
+
+When you tell the user how the tests went, pass or fail, add a one-line footnote: some
+calls can't be made for real during a test, so there are limits to how much certainty it can offer, and
+<https://docs.incident.io/nexus/extensions/incident-skills-plugin#limits-of-verification>
+explains them.
