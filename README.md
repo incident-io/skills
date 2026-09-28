@@ -28,9 +28,9 @@ Our plugin is in the [Cursor marketplace](https://cursor.com/marketplace/inciden
 /add-plugin incident-io
 ```
 
-You can also install it from the Cursor IDE. Use this [deeplink](cursor://anysphere.cursor-deeplink/plugin/add?id=59966080), or open **Customize** in the sidebar, find the incident.io plugin, and select **Install**, choosing whether to install it for the project or for your user account.
+You can also install it from the Cursor IDE.  Open **Customize** in the sidebar, find the incident.io plugin, and select **Install**, choosing whether to install it for the project or for your user account.
 
-Cursor syncs daily when you install from the official marketplace, so you'll pick up new skills as we ship them
+Cursor syncs daily when you install from the official marketplace, so you'll pick up new skills as we ship them.
 </details>
 
 <details>
@@ -46,7 +46,7 @@ codex plugin marketplace add incident-io/skills
 codex plugin add incident-io@incident-io-skills
 ```
 
-Codex syncs daily when a workspace admin imports our marketplace, and an admin can select Sync now under Admin → Plugins → Marketplaces to expedite it. If you added the marketplace yourself, run codex plugin marketplace upgrade to pull a new version.
+Codex syncs daily when a workspace admin imports our marketplace, and an admin can select Sync now under Admin → Plugins → Marketplaces to expedite it. If you added the marketplace yourself, run `codex plugin marketplace upgrade` to pull a new version.
 </details>
 
 <details>
