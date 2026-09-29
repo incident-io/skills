@@ -72,7 +72,7 @@ Once the mechanism is chosen, the work belongs to its owner:
 
 - **Skill or triage skill** → the `skill-authoring` skill's create job; for triage
   skills it carries a dedicated reference on authoring for an automated caller.
-- **Architecture doc** → the `architecture` skill's write job.
+- **Architecture doc** → the `architecture-author` skill.
 - **Connector** → the dashboard's Extensions page; the companion skill, once it's
   connected, goes through `skill-authoring`.
 

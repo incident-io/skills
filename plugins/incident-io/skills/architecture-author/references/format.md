@@ -117,11 +117,11 @@ Hard rules — a change that breaks one goes back.
 
 - **Change the doc in the change that changes the fact.** Moving a deployment, renaming
   a cluster, or re-routing a path updates the owning doc in the same pull request.
-- **Gaps are curation input.** When the Answer job (or a responder) finds a question
+- **Gaps are curation input.** When the `architecture` skill (or a responder) finds a question
   these docs can't answer, that's a missing section to write, not an answer to
   improvise. Collect the gaps rather than losing them.
 - **Verify sweeps.** Every reference in a corpus following this format is greppable by
   design, so staleness is detectable mechanically: re-check identifiers, paths, and
   links against the code periodically and whenever touching a file. To run one, use the
-  `runbooks` skill's verify mode pointed at this corpus — its claim-extraction rules
+  `runbooks-author` skill's verify mode pointed at this corpus — its claim-extraction rules
   apply unchanged; only the chain-link check differs.

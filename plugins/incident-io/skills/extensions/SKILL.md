@@ -54,7 +54,10 @@ starts before both.
   touching any target system — its create job owns the order of work (the user's
   context first, exploration after), and starting the exploration here skips the
   gates that make the skill worth writing.
-- **Write or answer from architecture docs** → the `architecture` skill
+- **Answer from architecture docs** → the `architecture` skill
+- **Write or improve architecture docs** → the `architecture-author` skill
+- **Find or follow a runbook** → the `runbooks` skill
+- **Write, rehearse or maintain runbooks** → the `runbooks-author` skill
 - **Review the estate's health** ("is our setup healthy? what's degraded?") → the
   `doctor` skill
 
@@ -94,8 +97,8 @@ the job over. Before then: answer and Next step.
 Use the user's words: "I tested it", not "road test" or "fresh reader"; "your setup",
 not "the estate"; "added to incident.io", not "registered"; "incident.io has picked up
 your changes", not "synced". Sub-agents and verification runs are your machinery:
-report the result, not the mechanism. The plugin's talking-to-the-user doc, which
-estate.md links, has the full table.
+report the result, not the mechanism. The `talking-to-the-user` skill has the full
+table.
 
 ## Ground rules
 

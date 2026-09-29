@@ -44,7 +44,7 @@ serially.
 
 | Finding | Route |
 |---|---|
-| Restated subject, copies agree | trim-and-chain brief → the `runbooks` skill's maintain job (or the owning doc's editor) |
+| Restated subject, copies agree | trim-and-chain brief → the `runbooks-author` skill's maintain job (or the owning doc's editor) |
 | Restated subject, copies disagree | same brief, led by which copy is current — severity from the disagreement |
 | Dead lever | a correction brief naming the verified replacement, or "replacement unknown — verify before editing" |
 | Stale pointer | fix brief for whichever end is wrong: repoint, or move the content home |

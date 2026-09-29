@@ -184,7 +184,7 @@ is assessed by next week's loads, not immediately.
 ## The report
 
 End the job with a short account the team can act on, in the voice
-[talking-to-the-user.md](../../../docs/talking-to-the-user.md) sets — the issue-by-issue
+the `talking-to-the-user` skill sets — the issue-by-issue
 detail goes in the pull request description; the reply carries the headline and what
 happens next: the edits made and why (issue by
 issue: fixed, won't-fix with the recorded reason, or superseded), which issues you

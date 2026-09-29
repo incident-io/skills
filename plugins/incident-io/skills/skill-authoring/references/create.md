@@ -81,7 +81,7 @@ competes.
 
 Context the user supplies often contains facts about what a system *is* — where it
 runs, what it depends on, its real names. Those belong in the team's architecture
-docs, not buried in the skill: write them through the `architecture` skill's write job
+docs, not buried in the skill: write them through the `architecture-author` skill
 in the same change, and let the skill lean on the docs.
 
 ## 2. Check it doesn't already exist
@@ -248,7 +248,7 @@ say so rather than assuming automatic pickup.
 ### Hand over for review
 
 When you hand over the pull request, say in a few lines what to check — in the voice
-[talking-to-the-user.md](../../../docs/talking-to-the-user.md) sets:
+the `talking-to-the-user` skill sets:
 
 - **Facts, not wording.** Give them step 3's claims list to tick off — every name,
   tool, data source, number and owner the skill states, and how each was checked. Edit a

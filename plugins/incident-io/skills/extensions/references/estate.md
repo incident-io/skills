@@ -2,7 +2,7 @@
 
 What a ready incident.io agent estate has, how to measure what exists, and where to
 route what's missing. Replies follow
-[talking-to-the-user.md](../../../docs/talking-to-the-user.md). One walk, three
+the `talking-to-the-user` skill. One walk, three
 starting points:
 
 - **From scratch** — nothing exists yet. Where the request doesn't say what to build,
@@ -39,7 +39,7 @@ lines. That's the walk working, not failing.
 ## Milestones
 
 The format, the plan-level yes and the re-show rule are in
-[talking-to-the-user.md](../../../docs/talking-to-the-user.md). This section owns the
+the `talking-to-the-user` skill. This section owns the
 sequence. Derive the list from the task — a narrow goal gets a short list, and
 prerequisites (GitHub or GitLab access, a connection the skill leans on) appear only
 when they're missing. Three points are fixed whenever content ships: it is tried out
@@ -207,10 +207,10 @@ ask the user where theirs live and record the answer as user-reported.
 **Missing:** neither corpus is a gate on setup.
 
 - Architecture docs are written just-in-time: creating a skill captures the docs that
-  skill needs through the `architecture` skill's write job; a general corpus can
+  skill needs through the `architecture-author` skill; a general corpus can
   follow — during setup where the user wants it.
 - Runbooks are most valuable once there's incident history to curate from (the
-  `runbooks` skill's curate job mines closed incidents); a team with an
+  `runbooks-author` skill's curate job mines closed incidents); a team with an
   already-practised procedure can write one any time — writing the skill it leans
   on first.
 

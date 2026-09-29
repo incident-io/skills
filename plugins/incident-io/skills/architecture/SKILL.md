@@ -1,14 +1,13 @@
 ---
 name: architecture
 description: >
-  Answer questions about how a team builds, deploys, and runs its software — what a
-  system is, where it runs, what it depends on, and the real names of things (cloud
-  projects, clusters, namespaces, hostnames, buckets) — from architecture docs wherever
-  they live. Also guides writing those docs: an interview that pins down what each
-  system actually is before anything is written. Use when asked "how does X run",
-  "what is Y", "where does Z live", when grounding a component before debugging it, or
-  when asked to write or improve architecture documentation.
-argument-hint: "<an estate question to answer — or write to author architecture docs>"
+  Answer questions about how the organisation builds, deploys, and runs its software —
+  what a system is, where it runs, what it depends on, and the real names of things
+  (cloud projects, clusters, namespaces, hostnames, buckets) — from architecture docs
+  wherever they live. Use when asked "how does X run", "what is Y", "where does Z live",
+  or when grounding a component before debugging it. Writing or
+  improving architecture docs is the `architecture-author` skill.
+argument-hint: "<an estate question to answer>"
 ---
 
 # Architecture
@@ -16,54 +15,82 @@ argument-hint: "<an estate question to answer — or write to author architectur
 Architecture docs describe what systems *are*: where they run, what they depend on, and
 the real names of things. They pair with runbooks — runbooks own *procedures* (how to
 diagnose and fix a failure), architecture owns *facts* (what the component is in the
-first place) — and each side chains to the other rather than absorbing it. This skill
-answers estate questions (the estate: everything you run and where) from those docs,
-and guides writing them.
+first place). This skill answers estate questions (the estate: everything you run and
+where) from those docs, cited — never from general knowledge. General knowledge is
+exactly what these docs exist to override: a team's setup differs from defaults in
+precisely the ways worth writing down.
 
-## The two jobs
+## Where you are running
 
-- **Answer** — route a question ("how does X run", "what talks to Y") to the doc that
-  owns it, across every place architecture docs can live, and answer from the doc with
-  citations — never from general knowledge.
-  → [references/answer.md](references/answer.md)
-- **Write** — author or extend architecture docs. The heart of it is an interview that
-  resolves what system names actually mean before anything is written: the names people
-  use are ambiguous, and boundaries are decisions the owner makes, not facts an agent
-  infers. → [references/write.md](references/write.md)
+You are a coding agent with the incident.io plugin installed.
 
-## Before you start
+- **Before you start:** load the `extensions` skill and have it map the estate — which
+  plugins are registered, where each lives, and their sync state. Skipping it doesn't
+  fail loudly. It just means you searched the local half of the estate and reported it
+  as the whole.
+- **Where to search:** the four places in
+  [where-docs-live.md](references/where-docs-live.md), in its order. Read it before
+  searching, even when you think you know where the docs are.
+- **Where live config lives:** the workspace.
+- **When the docs have a gap:** if the user wants it filled now, that's the
+  `architecture-author` skill.
+- **When the question is really "how do I fix this failure":** hand over to the
+  `runbooks` skill. Its Find job owns routing a symptom to its runbook.
+- **How to reply:** in the voice the `talking-to-the-user` skill sets — lead with the
+  answer, be concise, one next step where there is one.
 
-Both jobs need to know which plugins exist. Load the `extensions` skill and have it
-map the estate first — which plugins are registered, where each lives, and their sync
-state. Come back with that map, then start the job.
+## 1. Pin the subject
 
-Skipping it doesn't fail loudly. It just means you searched the local half of the estate
-and reported it as the whole.
+Reduce the question to the system or identifier it is about: a service name, a
+hostname, a cluster, a bucket, a deployment. Keep both the literal identifier (for
+keyword search and grep) and the question phrasing (for semantic search).
 
-## Where this skill looks
+## 2. Search
 
-Architecture docs live in four places, and the same system can be documented in more
-than one. [references/where-docs-live.md](references/where-docs-live.md) owns them:
-what each place is for, how to reach it, what it cannot show you, and the order to read
-and write in. Both jobs work from that file rather than assuming a location.
+Search the places above, in their order. Start each corpus at its README — a
+well-formed corpus has a "Where do I look?" routing table that resolves most questions
+in one hop. Do not grep the tree before trying the map; the map exists so one hop finds
+the owning file. Grep only when the map misses. Document search results carry a source
+provider and generated tags; architecture-shaped documents describe systems and
+infrastructure rather than procedures.
 
-## The taxonomy
+## 3. Answer from the owning doc
 
-Architecture docs work when they follow a small structural spec — systems are
-directories (one per thing responders reason about separately, regardless of repo
-layout), views are root files answering one cross-system question, estate services
-(observability, the data platform, CI) are directories whose README routes across
-their tools, the README is the map, and churny values are pointed at rather than
-copied. The spec lives in [references/format.md](references/format.md); a corpus may
-carry its own FORMAT.md, which takes precedence.
-[references/concerns.md](references/concerns.md) catalogs the recurring concerns
-(deployment, database, events, …) and the questions each file answers, and
-[references/examples/](references/examples/README.md) is a complete worked example
-corpus to calibrate depth against.
+- **Quote identifiers verbatim** — project IDs, cluster and pool names, hostnames,
+  subscription names. A paraphrased identifier is worse than none.
+- **Cite the doc** each fact came from, and the authoritative config repo where the
+  doc names one.
+- **Respect what the docs deliberately do not hold.** Values that churn — replica
+  counts, resource limits, machine types, current flag state — are pointed at, not
+  copied. Answer with where the current value lives, not a number the docs never
+  promised. If the live config above holds that value, read it and say where it came
+  from.
+- **Keep it short.** Most questions resolve to a few sentences and one or two doc
+  references.
+
+## 4. When the docs do not cover it
+
+First make sure that is what happened. A place you couldn't reach is not a place with no
+docs, and reporting an unreachable corpus as a missing one sends someone to write a
+document that already exists. Name what you couldn't search.
+
+Once it's genuinely a gap, say so explicitly. Answer from other evidence when you have
+it — deploy manifests, service definitions, config, a connected system's own listing —
+clearly labelled with where it came from, not the docs. Never silently substitute general
+knowledge for a missing doc.
+
+Then note the gap as a curation candidate: a question the docs could not answer is a
+section waiting to be written. Handle it as "Where you are running" says.
+
+## Rules
+
+- Read-only, always: this skill explains; it never mutates, flips flags, or runs
+  commands that change state.
+- Route, don't absorb: if the question is really "how do I fix this failure", ground
+  the component here, then hand over as "Where you are running" says.
 
 ## What this skill is not for
 
-Diagnosis and fixes (that's the runbook that owns the failure — the `runbooks` skill
-routes to it), current runtime state (replica counts, flag values — the docs point at
-where those live), and product or code-level documentation (API references, user
-guides).
+Writing or maintaining architecture docs, diagnosis and fixes (the runbook that owns the
+failure), current runtime state (replica counts, flag values — the docs point at where
+those live), and product or code-level documentation (API references, user guides).

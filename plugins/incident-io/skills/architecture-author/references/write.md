@@ -9,22 +9,22 @@ listing. So the heart of this job is an interview, and the drafting comes second
 
 ## 1. Search first
 
-Never write before searching. Run the search in
-[where-docs-live.md](where-docs-live.md) on each system name in scope, in the order it
-sets out. What exists shapes everything after: an
-existing doc means extending it, not writing a sibling, and the docs you find are
-evidence for the interview.
+Never write before searching. The search is the skill's "Before you start" step:
+the `architecture` skill, loaded and run on each system name in scope. If you have not
+run it yet, run it now. What exists shapes everything after: an existing doc means
+extending it, not writing a sibling, and the docs you find are evidence for the
+interview.
 
 ## 2. Resolve the home
 
-The writing ladder in [where-docs-live.md](where-docs-live.md) decides this — read it
+The writing ladder in [homes.md](homes.md) decides this — read it
 before choosing, even when the answer looks obvious, because the right home depends on
 where the team's corpus already is and on who needs to read the result. Confirm the
 choice before writing into an external system.
 
 ## 3. The interview
 
-Run it in the voice [talking-to-the-user.md](../../../docs/talking-to-the-user.md)
+Run it in the voice the `talking-to-the-user` skill
 sets — one question at a time, carrying what it turns on.
 
 Work system by system. For each system name the user uses, before writing anything:
@@ -93,7 +93,7 @@ line per system and links down for detail. Propose it when the pattern appears.
 
 ## 6. Check it will be found
 
-Run the closing check in [where-docs-live.md](where-docs-live.md): say which places will
+Run the closing check in [homes.md](homes.md): say which places will
 surface the new docs, and give the user a test they can run.
 
 ## Extending an existing corpus

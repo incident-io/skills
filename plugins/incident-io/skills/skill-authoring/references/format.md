@@ -128,7 +128,7 @@ every environment can meet.
   paths into a checkout, install commands. If a skill depends on a connection, record
   the dependency in the plugin README and let each reader meet it their own way.
 - **When a tool may be absent, say what to do instead** — the absence path, below. See
-  the plugin's [agent-environments doc](../../../docs/agent-environments.md) for the
+  the plugin's [agent-environments doc](agent-environments.md) for the
   environment map these rules come from.
 - **Name harness capabilities as intent, never as a client's tool.** Delegation,
   shell, searching, asking the user — every client exposes these differently, so write
@@ -144,7 +144,7 @@ every environment can meet.
 - **Reach the skill's own files through the environment's variable** (`$SKILL_DIR` for
   the skill's directory) rather than an absolute or repo-relative path — the same tree
   mounts at different roots per environment. Which variables exist per environment is
-  the [agent-environments doc](../../../docs/agent-environments.md)'s table. A
+  the [agent-environments doc](agent-environments.md)'s table. A
   client-specific permission pin (an `allowed-tools` entry) is that client's concern:
   verify it in that client, and never let the body depend on it.
 

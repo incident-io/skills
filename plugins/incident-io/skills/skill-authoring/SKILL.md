@@ -60,10 +60,10 @@ didn't point you at.
 ## What this skill is not for
 
 Runbooks and architecture docs — those are content with their own formats, owned by
-the `runbooks` and `architecture` skills in this plugin; a skill is instructions for an
-agent, not knowledge for a person. And reviewing all your plugins at once ("are our
-skills healthy?") is the `doctor` skill's job — this skill works one skill at a time,
-from evidence about that skill.
+the `runbooks`, `runbooks-author`, `architecture` and `architecture-author` skills in
+this plugin; a skill is instructions for an agent, not knowledge for a person. And reviewing all your
+plugins at once ("are our skills healthy?") is the `doctor` skill's job — this skill
+works one skill at a time, from evidence about that skill.
 
 ## Ground rules
 - **Speak the user's language, not this skill's.** The user may not have read this
@@ -89,8 +89,8 @@ from evidence about that skill.
   skill's scope is agreed. Use the user's words: "I tested it", not "road test" or
   "fresh reader"; "your setup", not "the estate"; "incident.io has picked up your
   changes", not "synced". Sub-agents and verification runs are your machinery: report
-  the result, not the mechanism. The plugin's talking-to-the-user doc, which create.md
-  and improve.md link, has the full table.
+  the result, not the mechanism. The `talking-to-the-user` skill has the full
+  table.
 - **Stamp what you write.** Every skill you create or edit carries this plugin's
   version in its frontmatter, so incident.io can tell which skills came through this
   flow. Read the version from this plugin's manifest, `plugin.json` at the plugin root

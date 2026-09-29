@@ -61,7 +61,7 @@ guess, or pick between two branches.
 
 An automated caller usually arrives holding evidence already: the alert, recent changes,
 messages, prior incidents. Whether it hands you a summary or a mounted workspace differs
-by environment ([agent-environments.md](../../../docs/agent-environments.md) has the map)
+by environment ([agent-environments.md](agent-environments.md) has the map)
 — what holds everywhere is that re-deriving what it already gathered spends the
 incident's time on facts it was handed.
 

@@ -1,9 +1,8 @@
 # Where architecture docs live
 
-The places architecture docs can live, what each is for, and how to reach it. The
-Answer job searches these; the Write job chooses among them. Neither describes the
-places itself — this file owns them, and [format.md](format.md) owns what a document
-looks like once you are writing one.
+The places architecture docs can live, what each is for, and how to reach it. This
+skill searches these, and the `architecture-author` skill chooses a home among them
+when writing. Neither describes the places itself — this file owns them.
 
 Three facts shape everything below.
 
@@ -32,9 +31,9 @@ Architecture docs inside a plugin, alongside its `skills/`.
 the depth lives. An agent reads this first to pick up the estate's vocabulary before
 searching anything else, and it is the one layer a hosted agent always has.
 
-**Load and run the `extensions` skill first and ask it to map the estate**. It owns
-plugin discovery — which plugins exist, where each lives, and their sync state. Come
-back with the plugin list, then continue the search.
+**Start from the plugin list the `extensions` skill mapped**, the first step under
+"Where you are running" in the skill. That map is which plugins exist, where each
+lives, and their sync state.
 
 **Architecture docs inside plugins can be fetched through the document tools** — the
 incident.io connection's `document_search`, then `document_show` for the full text. A
@@ -111,20 +110,3 @@ The index earns its place by making the second step's search terms right. Skip a
 places without comment, but distinguish a place that held nothing from a place you
 could not ask: those are different findings, and reporting a failed lookup as an empty
 one is the worst mistake available here.
-
-## Writing: the existing corpus wins
-
-1. **An existing architecture corpus wins.** New docs join it, matching its layout and
-   its FORMAT.md if it carries one.
-2. **Otherwise default to the plugin** — it is the one home every agent can reach
-   without anything else being connected.
-3. **Where the existing corpus lives somewhere else**, put the depth there and put an
-   index entry and a summary in the plugin. Both, not either: depth where the team
-   already keeps it, discoverability where every agent will look.
-4. **Where what you are writing falls outside what this skill's guidance covers**, ask
-   the user rather than choosing. A home chosen by guessing is one nobody maintains.
-
-Then check it will be found: say which places will surface the new docs, and for a repo
-home say whether that repo is connected — if it is not, the docs reach people with a
-checkout and no one else. A test the user can run beats a claim: after the next sync,
-searching the document index for a distinctive identifier from the doc should return it.
