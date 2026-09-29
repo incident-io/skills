@@ -122,9 +122,8 @@ If your agent reads none of these formats, you can point your tool's own mechani
 
 #### Contributing
 
-This repository is a read-only release mirror: each commit is a squashed snapshot of a
-release, so pull requests opened here can't be merged. Please report problems via
-[incident.io support](https://incident.io) instead.
+This repository is a read-only release mirror, pull requests are not accepted here.
+Please report problems via [incident.io support](https://incident.io) instead.
 
 #### License
 
