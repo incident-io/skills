@@ -5,8 +5,7 @@ description: >
   what a system is, where it runs, what it depends on, and the real names of things
   (cloud projects, clusters, namespaces, hostnames, buckets) — from architecture docs
   wherever they live. Use when asked "how does X run", "what is Y", "where does Z live",
-  or when grounding a component before debugging it. Writing or
-  improving architecture docs is the `architecture-author` skill.
+  or when grounding a component before debugging it.
 argument-hint: "<an estate question to answer>"
 ---
 
