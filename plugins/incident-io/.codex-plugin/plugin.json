@@ -14,12 +14,13 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "incident.io",
-    "shortDescription": "Respond to and investigate incidents from your agent",
+    "shortDescription": "Use incident.io in your agent",
     "longDescription": "Makes your agent fluent in incident.io: responding to and investigating incidents, working with on-call schedules and escalations, and authoring the operational content — runbooks, skills, and plugins — that incident.io investigations draw on. Bundles the official incident.io MCP server.",
     "developerName": "incident.io",
     "category": "Developer Tools",
     "capabilities": ["Read", "Write"],
     "websiteURL": "https://incident.io",
+    "supportURL": "https://docs.incident.io/help/contact",
     "privacyPolicyURL": "https://incident.io/privacy",
     "termsOfServiceURL": "https://incident.io/terms",
     "defaultPrompt": [
