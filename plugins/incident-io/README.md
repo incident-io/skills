@@ -19,6 +19,7 @@ workflows unreliably.
 | [architecture-author](./skills/architecture-author) | Interviews you to write and maintain the architecture docs that say what each system is, where it runs and what it depends on. |
 | [doctor](./skills/doctor) | Reviews the health of your setup: sync failures, skills that load but don't get followed, and feedback worth acting on. It reports what to fix and never edits anything. |
 | [extensions](./skills/extensions) | The place to start. Reads your current plugins and connectors, works out whether a plugin or a connector solves your problem, scaffolds and registers a plugin, then hands off to the skill that owns the rest. |
+| [on-call](./skills/on-call) | Shows who is on call, manages overrides and cover requests on your schedules, and pages people and checks whether a page reached them. |
 | [skill-authoring](./skills/skill-authoring) | Writes new skills from your team's knowledge, verifies them before they ship, and improves existing skills from the usage feedback we record. |
 | [talking-to-the-user](./skills/talking-to-the-user) | Sets how the incident.io skills talk to you, including one clear next step at the end of each reply. |
 
