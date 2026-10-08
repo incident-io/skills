@@ -164,22 +164,20 @@ before working in it:
 
 ### 4. Connections
 
-**Ready:** the telemetry sources and connectors the team's skills lean on, connected
-and healthy — `connection_status` good, no `reconnection_reason` set.
+**Ready:** the connectors the team's skills lean on, connected and healthy —
+`connection_status` good, no `reconnection_reason` set. Telemetry data sources are
+not part of this walk: their health is the `doctor` skill's.
 
-**Measure:** in order of preference:
+**Measure:**
 
-1. `extension_connector_list` — each connection with its type, enabled state,
+1. `extension_connector_list` — each connector with its type, enabled state,
    capabilities, health, and `tool_access`: every tool with its class and its rule
    for chat, MCP clients and investigations. Read that for what investigations can
    call; `tools` is only what this session can call from an MCP client.
    `tools_unlisted: true` means callable but not named — say "tools unlisted", never
-   "no tools". Entries with no capabilities are grouping or credential nodes whose
-   children carry the queryable capabilities.
-2. Where the session reads MCP resources, `telemetry://datasources` gives the same
-   inventory without health.
-3. Otherwise ask the user to read the dashboard's data sources page and record what
-   they report.
+   "no tools".
+2. Without the tool, ask the user to read the Connectors tab of the dashboard's
+   Extensions page and record what they report.
 
 Record when each connection was made where a surface or the user can say — a young
 connection changes how its data reads in check 7.
