@@ -1,12 +1,13 @@
 ---
 name: extensions
 description: >
-  Understand the extensions so that you can help a user configure and manage
-  their incident.io agent estate. Use whenever you're working with incident.io plugins,
-  skills, connectors or MCPs in any way ("I want to set up an incident plugin"), when
-  someone new wants to give incident.io's agents their own knowledge and doesn't yet
-  know the pieces, or when you need to understand the user's existing configuration
-  before editing a plugin or skill.
+  Set up, explain and troubleshoot incident.io extensions: the plugins of skills and the
+  connectors (MCP servers, HTTP APIs) that give incident.io's agents an organisation's
+  own knowledge and tools. Use whenever you're working with incident.io plugins, skills,
+  connectors or the extension_ tools in any way, including why one isn't working: a
+  skill that never loads, a change that wasn't picked up, a sync error, a connector tool
+  investigations won't call, whether a skill is used or helping. Not for questions about
+  the organisation's own systems, which the architecture skill answers.
 ---
 
 # Extensions
@@ -41,6 +42,11 @@ starts before both.
   connections and their health, content), measured against what a ready estate has.
   One walk serves every starting point, from scratch to a readiness pre-check.
   → [references/estate.md](references/estate.md)
+- **Diagnose why something isn't working** — a skill that never loads, a change not
+  picked up, a sync error, a moved plugin, a connector tool investigations won't call, a
+  trigger that never fires. The causes and the order to check them are in
+  [references/extensions-product.md](references/extensions-product.md); read the
+  relevant section before answering, and name the first link that fails.
 - **Choose the right mechanism** — the user describes a problem ("I want these steps
   run at the start of an investigation", "I want something that diagnoses this error
   code") and it needs mapping to the feature that solves it: a skill, a runbook, an
@@ -72,8 +78,14 @@ Two kinds of first message; tell them apart:
   what's possible. [references/estate.md](references/estate.md)'s from-scratch entry has
   the default and how to pick it.
 
+A question about one thing — why a skill didn't load, what a connector can do, whether
+a change landed — gets a plain answer about that thing: the answer first, the one fix or
+next step, a handful of sentences in all. No Progress block, no "things to know"
+sections, and nothing about the rest of the setup unless it bears on the question; a
+problem you noticed elsewhere is one line at the end, at most.
+
 While you're driving a job — setting something up, writing or fixing a skill — each
-reply has this shape; a one-off question gets a plain answer:
+reply has this shape:
 
 ```markdown
 <the answer — a few sentences, in the user's words>

@@ -139,7 +139,8 @@ Without the tool, ask the user to read the dashboard's Extensions page.
   skill, after it is merged (the milestones section above).
   Never create a second plugin beside a working one without the user asking.
 - A sync error → the repository is unreachable or the tree malformed; scaffold.md's
-  verify step covers diagnosing it.
+  verify step covers diagnosing it. A `plugin_directory_missing` error means the plugin
+  moved: move it (extensions-product.md's syncing section), never add it again.
 - Selection excluding an expected skill → `extension_plugin_update` (or the dashboard)
   enables it; confirm which skills before changing selection, since it's set
   whole-state.
@@ -169,10 +170,12 @@ and healthy — `connection_status` good, no `reconnection_reason` set.
 **Measure:** in order of preference:
 
 1. `extension_connector_list` — each connection with its type, enabled state,
-   capabilities, the tools it exposes, and health. An absent tools list means nothing
-   is callable there; `tools_unlisted: true` means callable but not named — say "tools
-   unlisted", never "no tools". Entries with no capabilities are grouping or
-   credential nodes whose children carry the queryable capabilities.
+   capabilities, health, and `tool_access`: every tool with its class and its rule
+   for chat, MCP clients and investigations. Read that for what investigations can
+   call; `tools` is only what this session can call from an MCP client.
+   `tools_unlisted: true` means callable but not named — say "tools unlisted", never
+   "no tools". Entries with no capabilities are grouping or credential nodes whose
+   children carry the queryable capabilities.
 2. Where the session reads MCP resources, `telemetry://datasources` gives the same
    inventory without health.
 3. Otherwise ask the user to read the dashboard's data sources page and record what

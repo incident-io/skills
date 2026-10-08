@@ -17,9 +17,9 @@ Extensions page (`https://app.incident.io/~/nexus/extensions`).
   organization's repositories. A skill is a `SKILL.md` file explaining how to do
   something in their environment. Agents load a skill when it matches the work in front
   of them, then follow it.
-- **Connectors are systems agents call.** A connector is a remote MCP server the
-  organization has connected, exposing tools an agent can use to query something
-  incident.io has no native integration for.
+- **Connectors are systems agents call.** A connector is a remote MCP server or an HTTP
+  API (described by an OpenAPI spec) the organization has connected, exposing tools an
+  agent can use to query something incident.io has no native integration for.
 
 The rule for choosing between them: content the organization wants agents to **follow**
 is a plugin; a system it wants agents to **query** is a connector. Most teams end up
@@ -52,6 +52,13 @@ and that's the only thing read before deciding whether to load a skill; and only
 are read — anything else the plugin contains (commands, agent definitions for the
 team's own tooling) is synced but ignored.
 
+Skills a team already keeps for its coding agents (a `.claude/skills` folder, a
+marketplace repo) use the same format and would load, but every skill added goes live
+for incident.io's agents in real incidents. Ones written for development — writing
+migrations, reviewing pull requests — don't help there and pull selection off course.
+Don't recommend adding such a folder as it is: recommend a separate incident plugin
+that adapts what's useful, or adding it with hand-picked skills only, and say why.
+
 A plugin is a logistical unit, not a runtime concept: which plugin or repository a
 skill lives in has no effect on whether it's selected. The description does all the
 selecting, so semantic scoping belongs there — "describes Sentry errors for mobile
@@ -81,6 +88,15 @@ containing at least one `SKILL.md` — at the repository root or under a subpath
   newly-synced ones) or an explicit allowlist — under an allowlist, a skill merged
   later stays off until someone enables it, so a merge can't quietly change agent
   behaviour.
+- A sync or a move only starts one: the call returns `pending`. Read
+  `extension_plugin_list` again until the plugin shows `synced` or `error` (usually
+  seconds) and report that — a reply that stops at "pending" leaves the user to check.
+  A `sync_error` shown while `pending` is the previous attempt's.
+- A plugin whose directory or repository moved fails to sync with
+  `plugin_directory_missing` (or `repository_unavailable` after a rename). Move the
+  plugin to the new location (`extension_plugin_update` with the new repository or
+  subpath) — never remove and add it again, which throws away its usage history and
+  skill selection.
 
 ### Triage skills
 
@@ -92,6 +108,31 @@ investigation of a given kind should look first, and first hypotheses come back 
 and more accurate. Nothing else marks a skill as a triage skill — the name and
 description are the whole signal. The `skill-authoring` skill carries a dedicated
 reference on writing them.
+
+### Triggers: running a skill at a fixed moment
+
+When a skill must run every time, not when its description happens to match, it's a
+trigger, declared in `incident.yaml` at the plugin root:
+
+```yaml
+investigations:
+  - id: deploy-log-first
+    when: initial_searches       # or investigation_start
+    skill: deploy-log            # a skill dir in this plugin
+    blocks: false                # true makes the first hypothesis wait for it
+    frequency: every             # or once
+```
+
+- Only two moments fire today: `investigation_start` and `initial_searches`. Others the
+  docs mention (`on_hypothesis`, `before_conclusion`, `on_question`) and `if:` aren't
+  built — a trigger using one is **dropped at sync without an error**, and so is any
+  malformed entry. A sync that succeeds says nothing about the file.
+- A trigger fires only while its skill is enabled in the plugin's selection.
+- No tool lists triggers or reports dropped ones, and `incident.yaml` isn't readable
+  through the incident.io connection: check the file in the repository yourself against
+  these rules.
+- `ignore:` in the same file keeps paths (evals, scratch notes) out of the sync. A
+  leading `/` anchors a pattern at the plugin root; `.gitignore` doesn't apply.
 
 ### Usage is recorded and assessed
 
@@ -112,21 +153,38 @@ an agent advising on connectors should know:
   data source, connect it there, not through its MCP server — the telemetry system
   speaks each product's query language and learns the shape of the data, which a
   generic tool call can't match. Connectors are for systems with no native integration.
-- **The organization keeps an allowlist.** Only enabled tools can be called; anything
-  else is rejected before reaching the server. Tools that write are held higher: a tool
-  the server marks read-only (`readOnlyHint`) can simply be enabled, but one that
-  writes — or doesn't say — needs an administrator to allow it explicitly, and even
-  then is only callable when a person is talking to the agent. Investigations run
-  unattended and never call a tool that writes.
+- **Every tool has a class, and the class decides where it can run.** `read` (the server
+  marks it read-only, or an HTTP `GET`), `write` (it changes something but says it
+  destroys nothing, or an HTTP `POST`), `destructive` (`PUT`, `DELETE`, or a change the
+  server doesn't rule destructive), and `unknown` — an MCP tool whose server declared no
+  hints at all. Each tool is switched on or off, and each class has a rule per surface:
+  chat, MCP clients, and investigations (allow, deny, or only named people or teams).
+  Investigations run unattended: they never call write or destructive tools, and
+  `unknown` tools are off for them by default — so a connector whose server sends no
+  hints is invisible to investigations until someone allows unknown tools for them.
+- **Read access from `extension_connector_list`'s `tool_access`**, which lists every
+  tool, switched-off ones included, with its class and rule on each surface. Its
+  `tools` field is narrower: only what *this session* can call from an MCP client. It
+  says nothing about investigations, and a tool missing from it may still exist.
+- **Why a tool wasn't called**, in order: is the connector healthy
+  (`connection_status`, `reconnection_reason`); is the tool on; is its class allowed on
+  that surface; does any skill tell agents when to reach for it. Name the first that
+  fails.
+- **Private networks.** A server reachable only inside the organization's network is
+  reached through the connector proxy: a small service the organization runs inside
+  its network, set up in Settings → Connectors (the same word for a different thing),
+  then picked under Network access when adding the connector. Plain `http://` works
+  only through the proxy. Never suggest exposing the server publicly.
 - **Failure is non-fatal.** An unreachable server or a missing tool doesn't stop a run;
   the investigation carries on with what it has, and connection problems surface on the
   connector's dashboard page.
 
 Connectors are created and configured only in the dashboard — endpoint, auth (bearer
-token or OAuth), and the allowlist. There is no session tool for it: link the user to
-the Extensions page. Pair every connector with a skill that says when to use it and
-what its results mean — the connector is the ability to call something, the skill is
-why you'd want to.
+token or OAuth), which tools are on, and who may call them where. There is no session
+tool for any of it, and connector access is read-only from here: link the user to the
+connector's page under Extensions. Pair every connector with a skill that says when to
+use it and what its results mean — the connector is the ability to call something, the
+skill is why you'd want to.
 
 ## What a session can do
 
@@ -137,5 +195,4 @@ changes. The names say the job: they cover plugin registration and syncing, conn
 and skill inventories, usage and feedback reads, and verifying proposed content before
 it lands.
 
-Creating connectors, removing or relocating plugins, and renaming from the repository
-side stay in the dashboard.
+Creating or changing connectors and removing plugins stay in the dashboard.
