@@ -63,6 +63,12 @@ The tools are on the incident.io connection, called by the names this skill uses
   `responder`, a `viewer` or a deactivated person on their shifts, but nobody can page
   them, not even directly. Say so, and check whoever you name as taking over next the same
   way. A plain "who's on" question doesn't need the check.
+- "What was I paged for?", "what woke me up", "did I miss a page" read the asker's own
+  pages: `escalation_list` with `user: ["me"]`, newest first. Each page carries
+  `alert_title`, usually the reason it fired, and its incident's `incident_reference` and
+  `incident_name` when it has one. Many pages have no incident; then the page and its alert
+  are the answer, so don't go looking for one. `you` says whether each page targeted them and
+  whether they acked it, so answer from the list rather than opening every page.
 - On a page, a target with `not_paged_reason` was never paged, whatever else the record
   shows. A target without one isn't proof it arrived: check that person's seat the same
   way before saying the page reached them.
