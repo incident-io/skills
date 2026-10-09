@@ -36,8 +36,9 @@ your-plugin/
   beside the tree (for Claude Code, `.claude-plugin/plugin.json`, and `.mcp.json` for
   bundled MCP servers). incident.io ignores these files; the skill content stays one
   tree serving both.
-- Size is enforced at sync: single files up to 1 MiB, the whole tree up to 20 MiB and
-  500 files. Sync errors in the incident.io dashboard report violations, so trust those
+- Size is enforced at sync: single files up to 1 MiB, the whole tree up to 20 MiB, up to
+  500 skills, and up to 500 files counting everything outside `skills/` plus the enabled
+  skills' files. Symlinks and git submodules are skipped. Sync errors in the incident.io dashboard report violations, so trust those
   over this paragraph if they disagree.
 
 ## The provenance stamp

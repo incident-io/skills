@@ -7,7 +7,7 @@ same investigation as everything else — skills alongside native telemetry, con
 calls alongside native integrations.
 
 The human-facing documentation lives at
-<https://docs.incident.io/investigations/extensions/overview> — point users there for
+<https://docs.incident.io/nexus/extensions/overview> — point users there for
 anything they want to read themselves. Everything is configured from the dashboard's
 Extensions page (`https://app.incident.io/~/nexus/extensions`).
 

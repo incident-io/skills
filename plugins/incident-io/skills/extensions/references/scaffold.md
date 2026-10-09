@@ -14,9 +14,8 @@ Registration needn't come first. For a first-time setup it comes after the first
 is drafted, tried out and merged to the default branch — [estate.md](estate.md)'s
 milestones section has the order and why. The steps below land it once that's done. A
 user who wants the plugin set up empty, with content to follow, gets exactly that —
-register the scaffold without comment; an empty plugin needs the
-`.claude-plugin/plugin.json` manifest, since with no skill there's nothing else for the
-sync to find.
+register the scaffold, with the `.claude-plugin/plugin.json` manifest so it can be found.
+Tell them its syncs fail until the first skill merges: a sync needs at least one skill.
 
 ## 2. Resolve the home
 
