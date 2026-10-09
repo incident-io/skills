@@ -22,6 +22,7 @@ workflows unreliably.
 | [on-call](./skills/on-call) | Shows who is on call, manages overrides and cover requests on your schedules, and pages people and checks whether a page reached them. |
 | [skill-authoring](./skills/skill-authoring) | Writes new skills from your team's knowledge, verifies them before they ship, and improves existing skills from the usage feedback we record. |
 | [talking-to-the-user](./skills/talking-to-the-user) | Sets how the incident.io skills talk to you, including one clear next step at the end of each reply. |
+| [telemetry](./skills/telemetry) | Queries your logs, metrics, traces, dashboards and databases to find evidence for an answer. |
 
 ## Connections
 
