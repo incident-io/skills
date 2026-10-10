@@ -64,7 +64,8 @@ The tools are on the incident.io connection, called by the names this skill uses
   them, not even directly. Say so, and check whoever you name as taking over next the same
   way. A plain "who's on" question doesn't need the check.
 - "What was I paged for?", "what woke me up", "did I miss a page" read the asker's own
-  pages: `escalation_list` with `user: ["me"]`, newest first. Each page carries
+  pages: `escalation_list` with `user: ["me"]` (or `escalations_list`, where the incident.io
+  desktop app adds it), newest first. Each page carries
   `alert_title`, usually the reason it fired, and its incident's `incident_reference` and
   `incident_name` when it has one. Many pages have no incident; then the page and its alert
   are the answer, so don't go looking for one. `you` says whether each page targeted them and
@@ -72,15 +73,36 @@ The tools are on the incident.io connection, called by the names this skill uses
 - On a page, a target with `not_paged_reason` was never paged, whatever else the record
   shows. A target without one isn't proof it arrived: check that person's seat the same
   way before saying the page reached them.
-- `escalation_create` on a path returns a draft (`suggestion`), not a page. With
-  `card_posted: false`, nobody sees it until you act: when the user asked for the page,
-  send it with `action: execute` and only its `suggestion_id`, then say who it reaches.
-  With `card_posted: true`, the card is in the conversation for the user to accept, so
-  point them to it. Never call a draft paged.
 - For who is on call for a service or component, resolve it through the catalog first:
   that walk ends at the right escalation path. A rota is often named for the thing it
   covers, so when the catalog has no answer, look for a schedule named for X before
   saying you cannot tell.
+
+## Paging
+
+Paging needs the organisation to run on-call in incident.io: with no `escalation_create`
+tool, say paging isn't available to them rather than improvising a substitute. Paging the
+wrong person can wake them at 3am for something that wasn't theirs, and a page can't be taken
+back, so:
+
+- **Draft unless asked outright.** Send directly only when the user explicitly asked to page
+  and there is exactly one obvious target. If the target is unnamed, ambiguous or a fuzzy
+  match, ask first; never default to a team.
+- **A question isn't a request.** "Can you page the backend team?" or "who's first-line on
+  this?" asks what's possible: answer it, naming who you could page, but page no one.
+- **Resolve every ID first.** A user, priority or escalation path comes from the catalog or
+  the user list; when a lookup returns more than one candidate, ask which.
+- `escalation_create` on a path returns a draft (`suggestion`), not a page. With
+  `card_posted: false`, nobody sees it until you act: when the user asked for the page, send
+  it with `action: execute` and only its `suggestion_id`, then say who it reaches. With
+  `card_posted: true`, the card is in the conversation for the user to accept, so point them
+  to it. Never call a draft paged.
+- `escalation_respond` answers a page the user was sent: ack ("I've got this") stops it
+  climbing the path, nack sends it on to the next level.
+
+When the user asks which page to look at, offer one line per recent page (title, its
+incident's reference and name, how long ago), newest first, and recommend one. Don't catch
+them up on any page's incident until they've picked it.
 
 ## Changing cover
 
