@@ -28,10 +28,8 @@ log_query(datasource_id: "…", purpose: "…", expression: "…", time_from: "�
 The telemetry tools are on the incident.io connection. Each tool's description is the
 authority on it: what it does, the arguments it takes, and how to read what it returns.
 
-Where the session has no `telemetry_guidance_show` but has `ask_telemetry`, the telemetry tools
-are not enabled for this organization: ask `ask_telemetry` the question in plain words
-instead, and say so. Where it has neither, say the incident.io connection has no telemetry
-tools rather than guessing an answer.
+Where the session has no `telemetry_guidance_show`, say the incident.io connection has no
+telemetry tools rather than guessing an answer.
 
 #### Running queries together
 

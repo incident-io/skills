@@ -13,7 +13,7 @@ for this plugin, or when debugging why a skill behaves differently in one enviro
 |---|---|---|
 | Filesystem | Real: the working directory is your repo | Virtual and sandboxed: read-only mounts plus a writable scratch space |
 | Shell | Full | Sandboxed interpreter: `cat`, `grep`, `find`, `jq`, pipelines — no host processes, no general network |
-| incident.io | The MCP connection (`document_search`, `incident_show`, `ask_telemetry`, …) | Native tools with the same capabilities (names differ; see below) |
+| incident.io | The MCP connection (`document_search`, `incident_show`, `log_query`, …) | Native tools with the same capabilities (names differ; see below) |
 | Other providers | Whatever MCPs the session has (Notion, a wiki, …) | The organization's connected tools, where the run has them |
 | Writes | Real files, real systems — confirm before writing anywhere external | The scratch space only; everything else is read-only |
 
@@ -54,7 +54,7 @@ environment meets that need with its own tool:
 | Search the organization's documents | `document_search` on the incident.io MCP | The native document search tools |
 | Read one document in full | `document_show` | The native document read tool |
 | Incident context | `incident_show` / `incident_list` / the investigation tools | Native incident tools, plus `/investigation` as files |
-| Telemetry (logs, metrics, traces) | `ask_telemetry` on the MCP | Native telemetry query tools |
+| Telemetry (logs, metrics, traces) | The `telemetry` skill | Native telemetry query tools |
 | Code and git history | Your workspace's own search (grep, git) | Hosted code search tools, where the run has them |
 | Plugin content | The plugin cache on disk | The `/plugins/*` mounts |
 | Producing output | Files in your workspace, or your reply | `/work`, and the run's result |
