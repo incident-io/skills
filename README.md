@@ -63,8 +63,6 @@ codex plugin add incident-io@incident-io-skills
 
 To get a new version from this repository, run `codex plugin marketplace upgrade`.
 
-On Business and Enterprise plans, an admin can import this repository's marketplace for everyone, from **Admin → Plugins → Marketplaces**. The workspace syncs it daily. To sync it sooner, the admin selects **Sync now** on the same page.
-
 </details>
 
 <details>
