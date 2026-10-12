@@ -17,12 +17,13 @@ For "anything new?", find what changed before reading anything else. On the plug
 `investigation_sync(since: …)` with the time you last read it says what changed without reading
 the files. On the desktop app, `investigation_sync` fetches only what changed since its last
 download, and `investigation_timeline.md` says when each change came. `incident_update_list`
-has the updates. Report only what's new. When nothing is, say so in a line, without recapping what
-they've already read.
+has the updates. Report only what's new. When nothing is, say so, with where things stand in one
+line (whether the investigation is still running, and its leading hypothesis), and stop: the
+rest is a recap they didn't ask for, even when this session hasn't shown it to them.
 
-`incident_show`'s `investigation` include gives the summary and the findings, but not the
-evidence behind them or whether the investigation is still running. To say what it found and
-why, read its files:
+`incident_show`'s `investigation` include gives the summary, the findings, its status (still
+running, finished, or none) and when it last changed, but not the evidence behind the findings.
+To say why it thinks what it does, read its files:
 
 - **Desktop app**: `investigation_sync(incident_id: …)`, then `investigation_list`, then
   `investigation_read` with the incident and a path exactly as the listing gave it. Read long
@@ -41,9 +42,9 @@ Report the leading hypothesis with its confidence, what was ruled out, and wheth
 investigation is still running. Leave out the incident's status, roles, updates and actions,
 which belong to a catch-up, unless they change what the investigation means. A finding is a
 hypothesis, so never turn it into "the root cause is". "No investigation" covers several
-cases, so say which: none was started; the organisation doesn't have investigations (the tools
-are missing, or answer `product_not_available`); the incident is private (the desktop app's
-download then reports no investigation); or the download failed or expired. Say "it found
+cases, so say which: the include's status says whether none was started or the organisation
+doesn't have investigations; on the desktop app a private incident's download also reports none,
+and a download can fail or expire. Say "it found
 nothing" only when an investigation finished without findings.
 
 ## Answer provenance from the evidence

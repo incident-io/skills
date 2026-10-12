@@ -66,9 +66,10 @@ line with the fix ("open the incident.io desktop app and ask again"; "sign in ag
 app, then reconnect the incident.io server"), and point to the `doctor` skill for anything
 more. Never report it as the incident not existing, and don't carry on by guessing.
 
-`incident_show` returns the record (status, severity, roles, summary, the latest updates) and
-leaves out the investigation and the postmortem unless you `include` them;
-`incident_update_list` has every update. An AI investigation's full record is a set of files:
+`incident_show` returns the record (status, severity, roles, summary, the five most recent
+updates) and leaves out the investigation and the postmortem unless you `include` them;
+including `updates` returns every update, so it needs no `incident_update_list` after it. An
+AI investigation's full record is a set of files:
 `references/reading.md` says how to get them and what to read first.
 
 Work out which incident they mean before anything else:

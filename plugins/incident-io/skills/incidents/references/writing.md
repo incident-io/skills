@@ -121,6 +121,7 @@ everyone else anchors on.
   levels — **preserve that hedging** when you relay them; don't harden "possible"
   into "the cause".
 - An update speaks for the responders. Once one of them has stated the cause, write it
-  as they did. Where the investigation disagrees, don't swap or hedge their cause in the
-  update: tell the user outside the draft, with the investigation's reason, and let them
-  decide.
+  as they did, without hedging it, even when the investigation's view is the only thing
+  new since the last update: that view isn't the responders' news, so it never leads the
+  draft or replaces their cause. Where the investigation disagrees, tell the user outside the draft, with
+  the investigation's reason, and let them decide whether it goes in.
