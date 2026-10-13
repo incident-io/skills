@@ -50,8 +50,9 @@ update" is lifecycle.md then writing.md. Read the whole file, not a grep of it.
 ## How you reach the incident
 
 You're working outside the incident channel, in a coding agent or a chat app, through the
-incident.io plugin or the incident.io desktop app. You can't read the channel's messages, and
-what the user finds and changes here reaches neither the channel nor the investigation unless
+incident.io plugin, the incident.io MCP server on its own, or the incident.io desktop app.
+Below, "the plugin" also means the MCP server on its own, since it has the same tools. You can't
+read the channel's messages, and what the user finds and changes here reaches neither the channel nor the investigation unless
 it's shared in words.
 
 The organisation's configuration is the `config://organisation` resource from the incident.io

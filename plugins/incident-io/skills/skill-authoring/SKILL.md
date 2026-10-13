@@ -93,7 +93,10 @@ works one skill at a time, from evidence about that skill.
   table.
 - **Stamp what you write.** Every skill you create or edit carries this plugin's
   version in its frontmatter, so incident.io can tell which skills came through this
-  flow. Read the version from this plugin's manifest, `plugin.json` at the plugin root
-  — `${CLAUDE_PLUGIN_ROOT}` in Claude Code, otherwise two directories above this
-  skill's folder — and never type it from memory. If the manifest can't be read, write
-  `"unknown"` and tell the user. The format is in format.md's provenance stamp section.
+  flow. If you loaded this skill through the incident.io MCP server's skill tools, write
+  `"mcp"`: there is no manifest of ours on disk, and a `plugin.json` you can see belongs
+  to the repo you're working in. Otherwise read the version from this plugin's manifest,
+  `plugin.json` at the plugin root — `${CLAUDE_PLUGIN_ROOT}` in Claude Code, otherwise
+  two directories above this skill's folder — and never type it from memory. If the
+  manifest can't be read, write `"unknown"` and tell the user. The format is in
+  format.md's provenance stamp section.

@@ -57,7 +57,7 @@ before working on the plugin — so any agent editing the tree later picks up th
 conventions and the estate context first:
 
 ```markdown
-Load the `incident-io:extensions` skill before doing anything in this directory —
+Load the incident.io `extensions` skill before doing anything in this directory —
 including editing or writing skills. This is an incident.io plugin: the skills here
 sync to incident.io and are followed by its agents in real incidents.
 ```

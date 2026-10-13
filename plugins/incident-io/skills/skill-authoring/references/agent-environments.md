@@ -24,7 +24,9 @@ repo, and content sits in its conventional locations (`runbooks/`, `docs/archite
 and so on — each skill's find/answer job lists the locations it checks). Installed
 plugin content lives under your client's plugin root: in Claude Code, plugins are cached
 under `~/.claude/plugins/`, and the running plugin can locate its own files via
-`${CLAUDE_PLUGIN_ROOT}`.
+`${CLAUDE_PLUGIN_ROOT}`. incident.io's own skills can also come through the incident.io
+MCP server's skill tools with no plugin installed; their files are then read through
+those tools, not from disk.
 
 **In incident.io's hosted agents**, every session gets the same workspace:
 

@@ -57,15 +57,19 @@ metadata:
 ---
 ```
 
-- **The value is this plugin's version, read from its manifest** — `plugin.json` at the
-  plugin root — never typed from memory. In Claude Code the root is
-  `${CLAUDE_PLUGIN_ROOT}`; anywhere else it is two directories above this skill's own
-  folder. Quote it: unquoted, `0.19` is a number to YAML.
+- **The value is this plugin's version.** If you loaded the skill through the
+  incident.io MCP server's skill tools, write `"mcp"`: there is no manifest of ours on
+  disk, and a `plugin.json` you can see belongs to the repo you're working in.
+  Otherwise read it from this plugin's manifest — `plugin.json` at the plugin root —
+  never typed from memory. In Claude Code the root is `${CLAUDE_PLUGIN_ROOT}`; anywhere
+  else it is two directories above this skill's own folder. Quote it: unquoted, `0.19`
+  is a number to YAML.
 - **It means "last touched by".** Creating a skill writes it; improving a skill
   refreshes it to the current version, and a skill that never had one gains one on its
   first improve. So the estate converges with no separate sweep.
 - **What it does and doesn't say.** incident.io reads the stamp at sync and shows which
-  skills came through this flow, and with which version. It is a claim in a text file,
+  skills came through this flow, and with which version; `"mcp"` means it came through
+  the MCP server's skill tools, with no version. It is a claim in a text file,
   nothing more. Whether a skill *works* is a separate fact incident.io records from
   verification runs against the skill's content — see the road test in create.md — and
   the stamp is never used to decide it.

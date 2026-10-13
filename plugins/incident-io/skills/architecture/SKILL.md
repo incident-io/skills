@@ -21,7 +21,7 @@ precisely the ways worth writing down.
 
 ## Where you are running
 
-You are a coding agent with the incident.io plugin installed.
+You are a coding agent with incident.io's skills.
 
 - **Before you start:** load the `extensions` skill and have it map the estate — which
   plugins are registered, where each lives, and their sync state. Skipping it doesn't

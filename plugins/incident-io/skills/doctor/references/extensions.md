@@ -116,7 +116,9 @@ the report, not a full audit:
   bodies — these break the skill in environments the feedback may not cover.
 - References that nothing links to.
 - Skills with no provenance stamp (`metadata.incident-io-plugin-version` in the
-  frontmatter), or stamped with a version well behind this plugin's own. Plugin list
+  frontmatter), or stamped with a version well behind this plugin's own (skip this
+  comparison when this plugin's version can't be read). A stamp of `"mcp"` counts as
+  stamped and has no version to compare: never flag it as either. Plugin list
   entries report each skill's `authoring_plugin_version`, so this needs no tree read.
   An unstamped skill was written by hand or by another tool; a stale stamp means the
   authoring guidance has moved on since it was last touched. Neither is a defect on

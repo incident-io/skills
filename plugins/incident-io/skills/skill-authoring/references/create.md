@@ -154,7 +154,8 @@ picture. The rules that matter most for a new skill:
   keep it to a few sentences — activation comes from the subject, not from enumerating
   phrasings.
 - Stamp the frontmatter with this plugin's version under `metadata`, per the provenance
-  stamp section of [format.md](format.md): read the version from the plugin manifest,
+  stamp section of [format.md](format.md): read the version from the plugin manifest
+  (or write `"mcp"` when you loaded this skill through the MCP server's skill tools),
   quote it, never type it from memory. This is how incident.io knows the skill came
   through this flow.
 - Name connections and bare tools, arguments as data — never an invocation syntax;

@@ -166,7 +166,8 @@ chooses — and say the issue will keep resurfacing until someone dismisses it.
 
 Before shipping, refresh the skill's provenance stamp to this plugin's current version
 (the `metadata` key in [format.md](format.md)'s provenance stamp section, value read
-from the plugin manifest). A skill that never had one gains one now: the stamp records
+from the plugin manifest, or `"mcp"` when you loaded this skill through the MCP server's
+skill tools). A skill that never had one gains one now: the stamp records
 which version of this plugin last touched the file, and this edit is that touch.
 
 Same as [create.md](create.md) step 7, including its hand-over for review — with two
