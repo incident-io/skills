@@ -21,6 +21,7 @@ workflows unreliably.
 | [extensions](./skills/extensions) | The place to start. Reads your current plugins and connectors, works out whether a plugin or a connector solves your problem, scaffolds and registers a plugin, then hands off to the skill that owns the rest. |
 | [incidents](./skills/incidents) | Reads and updates incidents, including status, severity, roles, custom fields and updates, and looks back at past incidents. |
 | [on-call](./skills/on-call) | Shows who is on call, manages overrides and cover requests on your schedules, and pages people and checks whether a page reached them. |
+| [postmortem](./skills/postmortem) | Finds, reads, edits and reviews postmortem documents, checking their claims against what actually happened. |
 | [skill-authoring](./skills/skill-authoring) | Writes new skills from your team's knowledge, verifies them before they ship, and improves existing skills from the usage feedback we record. |
 | [talking-to-the-user](./skills/talking-to-the-user) | Sets how the incident.io skills talk to you, including one clear next step at the end of each reply. |
 | [telemetry](./skills/telemetry) | Queries your logs, metrics, traces, dashboards and databases to find evidence for an answer. |
