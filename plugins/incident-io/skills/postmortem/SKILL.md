@@ -3,8 +3,8 @@ name: postmortem
 description: >
   Work with an incident's postmortem document — the write-up a team produces after an
   incident. Use when the conversation is about a postmortem, post-incident review,
-  debrief or retro document: finding it, reading it, changing its text, or reviewing it
-  against what actually happened. Covers rewriting a section, fixing a claim, adding a
+  debrief or retro document: finding it, creating one, reading it, changing its text, or
+  reviewing it against what actually happened. Covers rewriting a section, fixing a claim, adding a
   timeline entry or a learning, and also judging whether its claims hold up, what is
   missing, and what should become a follow-up. Not for general questions about an
   incident, which is the incidents skill.
@@ -28,6 +28,13 @@ jobs depend on it, because which rendering you read decides whether your work la
 ID, an external ID, or a reference like `INC-123`. Each result carries the `id` the other
 tools take, with the title, status and whether it is the incident's primary document.
 
+**Check what kind of document it is, and whether it exists yet.** Everything below works
+on `in_app` documents. An `external` one lives in a provider such as Notion, named in
+`provider`, and nothing here reads or edits it: give the user its `url`. A `state` of
+`pending` means it is still being created and holds only a placeholder, so wait for
+`created` before reading it. `failed` means it never was, with the reason in `error`:
+tell the user rather than trying again unasked.
+
 **An incident can hold several documents.** When more than one comes back and the user
 said "the post-mortem", tell them what exists and let them choose. Do not take the
 primary one as what they meant — working on the wrong document is silent, and they will
@@ -36,6 +43,14 @@ not find out from you.
 You already have the id without calling this when `incident_show` was run with
 `include: ["postmortem"]`, which carries the primary document's. That is the primary one
 only, so it answers "the post-mortem" and not "which post-mortems".
+
+**When there isn't one, `postmortem_create` makes it.** Choose a template with
+`postmortem_template_list`, passing the incident to see its default. The template's
+`kind` decides what you get: an `in_app` document, or an `external` one, which goes to a
+destination from `postmortem_destination_list` or to the incident's default. A document
+made from a template comes back `pending`: follow it with `postmortem_list` until it is
+`created`. To write the post-mortem yourself, pass `content` as markdown instead of a
+template, and it exists straight away.
 
 ## 2. Reading it
 
