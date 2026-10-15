@@ -17,6 +17,7 @@ workflows unreliably.
 |-------|--------------|
 | [architecture](./skills/architecture) | Answers questions about how your systems are built, deployed and run, using your architecture docs. |
 | [architecture-author](./skills/architecture-author) | Interviews you to write and maintain the architecture docs that say what each system is, where it runs and what it depends on. |
+| [catalog](./skills/catalog) | Answers questions from your catalog, such as who owns a service, what it depends on and what a team owns. |
 | [doctor](./skills/doctor) | Reviews the health of your setup: sync failures, skills that load but don't get followed, and feedback worth acting on. It reports what to fix and never edits anything. |
 | [extensions](./skills/extensions) | The place to start. Reads your current plugins and connectors, works out whether a plugin or a connector solves your problem, scaffolds and registers a plugin, then hands off to the skill that owns the rest. |
 | [incidents](./skills/incidents) | Reads and updates incidents, including status, severity, roles, custom fields and updates, and looks back at past incidents. |
