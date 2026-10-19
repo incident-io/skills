@@ -31,7 +31,7 @@ authority on it: what it does, the arguments it takes, and how to read what it r
 Where the session has no `telemetry_guidance_show`, say the incident.io connection has no
 telemetry tools rather than guessing an answer.
 
-#### Running queries together
+#### Running queries in parallel
 
 Run queries that do not depend on each other as parallel tool calls, in one turn.
 
@@ -97,9 +97,8 @@ appropriate for a telemetry query, whereas a connector called `linear` with a to
 
 ## Ask more than one question at a time
 
-Queries that do not depend on each other should run together rather than one after another,
-as [Running queries together](#running-queries-together) shows. An incident rarely turns on a
-single query, and running them in sequence spends an engineer's time for no reason.
+Queries that do not depend on each other should run in parallel rather than one after
+another, as [Running queries in parallel](#running-queries-in-parallel) shows.
 
 Batch different questions, not copies of one query you have not proven yet. A batch returns
 when its slowest query finishes, so it costs whatever its worst member costs, and a shape
