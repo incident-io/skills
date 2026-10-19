@@ -1,11 +1,13 @@
 ---
 name: architecture
 description: >
-  Answer questions about how the organisation builds, deploys, and runs its software —
-  what a system is, where it runs, what it depends on, and the real names of things
-  (cloud projects, clusters, namespaces, hostnames, buckets) — from architecture docs
-  wherever they live. Use when asked "how does X run", "what is Y", "where does Z live",
-  or when grounding a component before debugging it.
+  Answer questions about how the organisation's own systems are built and run — what a
+  system is, who owns it, where it runs, what it depends on and what depends on it, and
+  the real names of things (clusters, hostnames, queues, buckets, repos) — from
+  architecture docs, the catalog and past incidents. Use whenever a question is about a
+  specific system or piece of infrastructure: "what is X", "what breaks if X goes down",
+  "where does X run", "do we have docs on X", or grounding a component before debugging
+  it.
 argument-hint: "<an estate question to answer>"
 ---
 
@@ -15,9 +17,9 @@ Architecture docs describe what systems *are*: where they run, what they depend 
 the real names of things. They pair with runbooks — runbooks own *procedures* (how to
 diagnose and fix a failure), architecture owns *facts* (what the component is in the
 first place). This skill answers estate questions (the estate: everything you run and
-where) from those docs, cited — never from general knowledge. General knowledge is
-exactly what these docs exist to override: a team's setup differs from defaults in
-precisely the ways worth writing down.
+where) from those docs and the records beside them, cited — never from general
+knowledge. General knowledge is exactly what these docs exist to override: a team's
+setup differs from defaults in precisely the ways worth writing down.
 
 ## Where you are running
 
@@ -49,9 +51,36 @@ keyword search and grep) and the question phrasing (for semantic search).
 Search the places above, in their order. Start each corpus at its README — a
 well-formed corpus has a "Where do I look?" routing table that resolves most questions
 in one hop. Do not grep the tree before trying the map; the map exists so one hop finds
-the owning file. Grep only when the map misses. Document search results carry a source
-provider and generated tags; architecture-shaped documents describe systems and
-infrastructure rather than procedures.
+the owning file. Grep only when the map misses. The README is a map, not a gate: every
+synced file is searchable whether or not the README lists it. Document search results
+carry a source provider and generated tags; architecture-shaped documents describe
+systems and infrastructure rather than procedures. A result's summary is a pointer, not
+the answer: open the owning doc before you state a fact from it.
+
+Docs are not the only record, so check these alongside them:
+
+- **The catalog** holds each system's purpose, owner, aliases and modelled
+  dependencies. A system is an entry inside a type, so find it by searching the
+  entries of the likely types (`catalog_entry_list` with `search`); listing types by a
+  system's name matches type names only, and an empty result there says nothing about
+  the system. Take ownership from it, never from a doc's own "Owner" line; when a doc
+  and the catalog disagree, give both and say which is newer.
+- **The glossary** holds the organisation's nicknames and acronyms. Resolve an
+  unfamiliar name there, and through catalog aliases, before searching for it. Code
+  paths and resource names resolve through aliases too, and one can fit more than one
+  system.
+- **Past incidents** are often the only description of a system nobody wrote up.
+- **A doc's notes** (`document_show` with `include: notes`) record known
+  inaccuracies. Read them whenever a claim's accuracy matters.
+
+Say "nothing describes it" only after all of these came back empty.
+
+**"What depends on X" needs a reverse lookup.** A dependency is recorded on the thing
+that depends, so X's own doc or catalog entry lists what X calls, not what calls X. Find
+the catalog types with an attribute that points at X's type, and list each with an
+`attribute_filters` `one_of` on X. Page to the end, or count, before giving a total;
+name the types you checked. For impact, run the same lookup once more on each direct
+dependent, and mark what that finds as second-hand impact.
 
 ## 3. Answer from the owning doc
 
