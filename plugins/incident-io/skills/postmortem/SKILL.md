@@ -164,6 +164,12 @@ Reported by <user id="01JOHANNA" value="Johanna Larsson" /> at <timestamp .../>.
 - **Tag names use hyphens, never underscores.** An underscore is not legal in an HTML tag
   name, so `<user_mention/>` is read as prose. The schema's internal type names use
   underscores; the tags do not.
+- **To add an image you have as a file, upload it first.** Markdown images (`![alt](url)`)
+  and `<img>` are refused, because a document only holds images stored with the incident.
+  Call `postmortem_image_upload_url` with the document's id and the file's type, PUT the
+  file to the `upload_url` it returns, then insert the `tag` it returns with
+  `postmortem_edit`, adding an `alt` that describes the image. If the edit says the upload
+  has not finished, the PUT did not land: check its response before editing again.
 - **Some tags are read-only.** A document that already holds one keeps it and your edits
   leave it alone, but writing a new one is refused. The format resource lists which.
 
@@ -187,9 +193,9 @@ The error says which edit and why. The common ones:
   their change may be the one you were about to make.
 - **"is not something this document can hold"** — a tag name or attribute that is not in
   the vocabulary. Check `format://postmortem-document`.
-- **"refers to something on an incident you cannot see"** — an image, follow-up or scribe
-  tag whose ID belongs elsewhere. Copy the tag from this document rather than writing an
-  ID.
+- **"refers to something that does not belong to this incident"** — an image, follow-up
+  or scribe tag whose ID belongs elsewhere. Copy the tag from this document rather than
+  writing an ID.
 - **"this document cannot be read as markdown"** or **"would change a part of it nobody
   asked to change"** — this particular document cannot go through the tool safely, so
   nothing was touched. Say so and point the user at the dashboard. This is about the
