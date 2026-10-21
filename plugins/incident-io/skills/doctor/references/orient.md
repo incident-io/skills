@@ -53,8 +53,8 @@ These rules keep it honest:
   wrapping is outside the report's control. Move overflow into a finding.
 - Every line is sourced from a tool this pass actually called, or reads
   `unknown — <how to find out>`.
-- Glyphs come from the rollup's own judgments (attention reasons, reconnection
-  needed, low success rate), never recomputed here — orientation summarizes, the
+- Glyphs come from the rollup's own judgments (each source's status and its
+  outstanding callouts), never recomputed here — orientation summarizes, the
   review verifies.
 - A connection with no queries in the stats window is "never queried", not healthy
   and not unhealthy — the same correction telemetry.md applies.

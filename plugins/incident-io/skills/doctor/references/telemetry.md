@@ -29,7 +29,7 @@ page and record what they report as user-reported.
 
 `nexus_health_show`, where the session has it — the same rollup the dashboard
 computes, so the report can never disagree with it: per-source status, query
-statistics over the stats window (total, failed, empty, useful), attention reasons,
+statistics over the stats window (total, failed, empty, useful), outstanding callouts,
 and usage counts. Read it with one correction: **its telemetry children cover only
 sources that ran queries in the stats window** — a connected source that has never
 been queried appears in `extension_connector_list` but not here, and "absent from
