@@ -233,3 +233,11 @@ does not give you the split inside it. Where the deciding value is missing, say 
 cannot tell you. Do not read it as a yes or a no, and do not let it outweigh a more
 precise measurement you already hold. Query the one series you need, or report the gap as
 a gap.
+
+A few sampled traces or log lines show what happened in those few, not who is behind all
+of them. When the question asks who sent something or where it came from and all you have
+is a sample, count every matching record by the fields that would name the sender (session,
+user, client, host, version) before you conclude; the sample tells you which fields to count
+by. And when the records you pulled show the same unasked-for event next to every failure
+but not next to the successes, such as a cache eviction just before each failing read,
+report it with its timing.
