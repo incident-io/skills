@@ -109,30 +109,11 @@ and more accurate. Nothing else marks a skill as a triage skill — the name and
 description are the whole signal. The `skill-authoring` skill carries a dedicated
 reference on writing them.
 
-### Triggers: running a skill at a fixed moment
+### Keeping files out of the sync
 
-When a skill must run every time, not when its description happens to match, it's a
-trigger, declared in `incident.yaml` at the plugin root:
-
-```yaml
-investigations:
-  - id: deploy-log-first
-    when: initial_searches       # or investigation_start
-    skill: deploy-log            # a skill dir in this plugin
-    blocks: false                # true makes the first hypothesis wait for it
-    frequency: every             # or once
-```
-
-- Only two moments fire today: `investigation_start` and `initial_searches`. Others the
-  docs mention (`on_hypothesis`, `before_conclusion`, `on_question`) and `if:` aren't
-  built — a trigger using one is **dropped at sync without an error**, and so is any
-  malformed entry. A sync that succeeds says nothing about the file.
-- A trigger fires only while its skill is enabled in the plugin's selection.
-- No tool lists triggers or reports dropped ones, and `incident.yaml` isn't readable
-  through the incident.io connection: check the file in the repository yourself against
-  these rules.
-- `ignore:` in the same file keeps paths (evals, scratch notes) out of the sync. A
-  leading `/` anchors a pattern at the plugin root; `.gitignore` doesn't apply.
+- `ignore:` in `incident.yaml` at the plugin root keeps paths (evals, scratch notes) out
+  of the sync. A leading `/` anchors a pattern at the plugin root; `.gitignore` doesn't
+  apply.
 
 ### Usage is recorded and assessed
 

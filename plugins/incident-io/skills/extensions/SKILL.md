@@ -43,8 +43,8 @@ starts before both.
   One walk serves every starting point, from scratch to a readiness pre-check.
   → [references/estate.md](references/estate.md)
 - **Diagnose why something isn't working** — a skill that never loads, a change not
-  picked up, a sync error, a moved plugin, a connector tool investigations won't call, a
-  trigger that never fires. The causes and the order to check them are in
+  picked up, a sync error, a moved plugin, a connector tool investigations won't call. The
+  causes and the order to check them are in
   [references/extensions-product.md](references/extensions-product.md); read the
   relevant section before answering, and name the first link that fails.
 - **Choose the right mechanism** — the user describes a problem ("I want these steps
