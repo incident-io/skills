@@ -59,7 +59,8 @@ The organisation's configuration is the `config://organisation` resource from th
 tools (`resource_show` with that URI where the session can't read resources). `incident_pin`,
 `escalations_list`, `identity_get`, `investigation_list`, `investigation_read` and `setup`
 come only with the incident.io desktop app: where one is missing they're on the plugin, so say
-what they'd need rather than calling it a limit of their organisation.
+what they'd need rather than calling it a limit of their organisation. Every connection has
+`identity_show`, which says who the connection acts as and what it can do.
 
 A call can fail for a reason that isn't the incident: the desktop app isn't running, they're
 signed out, or the incident.io MCP server isn't set up in this session. Stop, say which in one
