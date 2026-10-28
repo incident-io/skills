@@ -115,9 +115,9 @@ merging is blocked, pushing is not.
 **Uncommitted, against a plugin that already exists** — name the plugin and pass the
 changed files as full contents, overlaid on its synced version in memory.
 
-**In no repository we can read** — build the tar, call `extension_upload_url`, then pass
-its `mount_name` alone. That tool's own description carries how to build the archive and
-how long the URL lasts.
+**In no repository we can read** — build the tar, call `extension_upload_url`, PUT the
+tar with the headers it returns, then pass its `mount_name` alone. That tool's own
+description carries how to build the archive and how long the URL lasts.
 
 One case has a genuine choice rather than an answer: an edit that is *both* pushed and
 has a plugin can go either way. Take the branch there, because it carries no payload.

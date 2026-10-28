@@ -176,9 +176,9 @@ draft before anything lands. How you point it at the tree depends on what exists
   (`changes: [{path, content}]`, plugin-root-relative — new files included; they are
   overlaid on the synced version in memory, so nothing ships).
 - **A plugin's first skill, or no plugin at all.** There is no synced version to overlay
-  onto, so send the tree itself: `extension_upload_url` returns a URL, upload the plugin
-  as a `.tar.gz`, then call `extension_verify` with the `mount_name` you uploaded to and
-  no changes. The uploaded tree is what gets checked. Mount it under the name you intend
+  onto, so send the tree itself: `extension_upload_url` returns a URL and headers, PUT
+  the plugin to it as a `.tar.gz` with those headers, then call `extension_verify` with
+  the `mount_name` you uploaded to and no changes. The uploaded tree is what gets checked. Mount it under the name you intend
   to register the plugin as, or paths inside your skills resolve differently here than
   they will in production.
 - **The content is on a branch.** Give the repository, the ref and a `mount_name`, and
