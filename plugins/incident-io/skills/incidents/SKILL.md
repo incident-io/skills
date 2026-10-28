@@ -41,8 +41,9 @@ matching reference before acting, every time**.
   the investigation needs fed in and when it is just a question to answer.
 - **Write anything a human reads** — an update, the summary, customer or exec comms
   ("post an update", "suggest an update", "draft comms") → read
-  `references/writing.md` **before drafting a word**. It says what to lead with, what
-  never to restate, and how to keep your analysis labelled as theory.
+  `references/writing.md` **before drafting a word**. It says where to find the
+  organisation's format, what to lead with, what never to restate, and how to keep your
+  analysis labelled as theory.
 
 A task that spans jobs reads each matching reference — "accept this and post an
 update" is lifecycle.md then writing.md. Read the whole file, not a grep of it.
