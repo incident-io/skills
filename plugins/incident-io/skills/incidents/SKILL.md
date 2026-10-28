@@ -57,7 +57,7 @@ it's shared in words.
 
 The organisation's configuration is the `config://organisation` resource from the incident.io
 tools (`resource_show` with that URI where the session can't read resources). `incident_pin`,
-`escalations_list`, `identity_get`, `investigation_list`, `investigation_read` and `setup`
+`escalations_list`, `investigation_list`, `investigation_read` and `setup`
 come only with the incident.io desktop app: where one is missing they're on the plugin, so say
 what they'd need rather than calling it a limit of their organisation. Every connection has
 `identity_show`, which says who the connection acts as and what it can do.
