@@ -82,6 +82,7 @@ Whatever the format:
   help and requests for input. An update is a statement to everyone following the
   incident, not a reply to someone.
 - Write as the responders, not as an assistant answering whoever asked for the update.
+- Write in markdown. Updates are posted in Slack or Microsoft Teams, which show bold, italic, links and bulleted or numbered lists, but not headings or tables, so never use those. Leave a blank line between paragraphs, because a single line break shows as a space.
 
 ## Summaries
 
