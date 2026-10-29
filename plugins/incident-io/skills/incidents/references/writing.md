@@ -69,8 +69,8 @@ Whatever the format:
   like a fix rolling out, is one sentence. New findings, impact or fixes get more, but
   keep it short enough to read at a glance, never a wall of text.
 - Be specific about impact: who or what is affected, and how, as far as responders know.
-- Give the time of key moments, like when a fix went out or errors stopped, in short form
-  with its timezone (e.g. "at 13:59 BST").
+- Give the time of key moments, like when a fix went out or errors stopped, in short form,
+  in the timezone you've been told to use, with its abbreviation (e.g. "at 13:59 BST").
 - Link every code change, dashboard and alert you mention, using the links in the
   incident and labelling each with its identifier, e.g.
   [PR #123](https://github.com/acme/app/pull/123).
@@ -106,7 +106,8 @@ Whatever the format:
   theory (e.g. "this might be X, but we're still confirming"), and not at all once it's
   ruled out.
 - Give the time of key moments, like when the problem started or a fix went out, in
-  short form with its timezone (e.g. "at 09:15 UTC").
+  short form, in the timezone you've been told to use, with its abbreviation (e.g. "at
+  13:59 BST").
 - Describe fixes by what they changed, never by code-level identifiers like pod, host or
   function names, even when the incident uses them.
 - Leave out people's names and roles, status and severity, and routine steps like
