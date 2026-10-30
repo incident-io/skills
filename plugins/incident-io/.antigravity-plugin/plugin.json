@@ -1,0 +1,21 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "incident-io",
+  "displayName": "incident.io",
+  "description": "Respond to and investigate incidents, manage on-call schedules and escalations, and write runbooks and skills. Bundles the official incident.io MCP server.",
+  "version": "1.20261030.843",
+  "logo": "assets/logo.png",
+  "suggestedPrompts": [
+    "Run the extensions skill",
+    "What incidents are open right now?",
+    "Who's on call this week?"
+  ],
+  "author": {
+    "name": "incident.io",
+    "url": "https://incident.io"
+  },
+  "homepage": "https://incident.io",
+  "repository": "https://github.com/incident-io/skills",
+  "license": "MIT",
+  "keywords": ["incident-response", "on-call", "investigations", "runbooks", "sre", "devops"]
+}

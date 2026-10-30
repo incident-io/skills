@@ -66,6 +66,19 @@ To get a new version from this repository, run `codex plugin marketplace upgrade
 </details>
 
 <details>
+<summary>Antigravity</summary>
+
+To install our plugin from this repository, run:
+
+```
+agy plugin install https://github.com/incident-io/skills
+```
+
+To get a new version, run the same command again.
+
+</details>
+
+<details>
 <summary>Other agents</summary>
 
 Most agents that support plugins can install ours from this repository. This includes VS Code and GitHub Copilot. Add `incident-io/skills` as a marketplace, or `https://github.com/incident-io/skills` if your agent does not accept the shorthand. Then install the `incident-io` plugin from it.
@@ -114,22 +127,25 @@ plugins/
   incident-io/                      # the incident.io plugin
     .claude-plugin/plugin.json      # Claude plugin format
     .codex-plugin/plugin.json       # Codex plugin format
+    .antigravity-plugin/plugin.json # Antigravity plugin format
     .mcp.json                       # Claude + Codex formats - the official incident.io MCP server
     plugin.json                     # Agent Plugins 1.0 format
     mcp.json                        # Agent Plugins 1.0 - the same MCP server
+    mcp_config.json                 # Antigravity - the same MCP server
     skills/                         # shared by all formats
 ```
 
-#### Three formats, one plugin
+#### Four formats, one plugin
 
-This plugin is published in the Claude, Agent Plugins 1.0 and Codex formats, so most
-agents can install it directly rather than through a workaround.
+This plugin is published in the Claude, Agent Plugins 1.0, Codex and Antigravity formats,
+so most agents can install it directly rather than through a workaround.
 
 | Format | Files |
 |--------|-------|
 | [Claude plugin](https://code.claude.com/docs/en/plugins) | `.claude-plugin/marketplace.json`, and `.claude-plugin/plugin.json` + `.mcp.json` inside the plugin |
 | [Agent Plugins 1.0](https://agent-plugins.org) | `plugin.json` + `mcp.json` at the plugin root |
 | Codex plugin | `.agents/plugins/marketplace.json`, and `.codex-plugin/plugin.json` inside the plugin, sharing `.mcp.json` with the Claude format |
+| [Antigravity plugin](https://antigravity.google/docs/build-plugins) | `.antigravity-plugin/plugin.json` + `mcp_config.json` inside the plugin |
 
 The `skills/` directory is shared by all formats by convention.
 
