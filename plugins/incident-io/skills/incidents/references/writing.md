@@ -48,14 +48,9 @@ it can be dismissed in Slack or the dashboard.
 
 ## Update messages
 
-Updates are read as a series where each builds on the last. Before writing one, read the
-Update format section of the organisation's configuration: it holds the guidelines every
-update follows and the format this organisation chose. If the incident has an AI
-investigation, read it along with the incident's updates (the read says when there's
-none). You can use what it found, such as when errors started or which deploy went out,
-but a cause it suggests only goes in once a responder has confirmed it. Where it
-disagrees with the responders, tell the user, as "Keep your analysis honest" says. If the
-user asks for something different, do what they asked.
+Before writing an update, read the Update format section of the organisation's
+configuration: it holds the guidelines every update follows and the format this
+organisation chose. If the user asks for something different, do what they asked.
 
 ## Summaries
 
