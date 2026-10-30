@@ -3,7 +3,7 @@
   "name": "incident-io",
   "displayName": "incident.io",
   "description": "Respond to and investigate incidents, manage on-call schedules and escalations, and write runbooks and skills. Bundles the official incident.io MCP server.",
-  "version": "1.20261030.986",
+  "version": "1.20261030.1014",
   "logo": "assets/logo.png",
   "suggestedPrompts": [
     "Run the extensions skill",

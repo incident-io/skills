@@ -46,7 +46,9 @@ matching reference before acting, every time**.
   analysis labelled as theory.
 
 A task that spans jobs reads each matching reference — "accept this and post an
-update" is lifecycle.md then writing.md. Read the whole file, not a grep of it.
+update" is lifecycle.md then writing.md. Moving an incident to another status category,
+such as accepting, pausing, resolving or closing it, spans both too, because the move
+often has context worth writing down. Read the whole file, not a grep of it.
 
 ## How you reach the incident
 

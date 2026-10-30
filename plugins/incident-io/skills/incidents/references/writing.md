@@ -15,9 +15,13 @@ Incidents generate five kinds of writing, and each goes somewhere different.
   channel with `incident_message`, for the responders. It changes nothing on the
   incident; see below.
 
-If a request is only structured changes (status, severity, a field) with nothing
-narrative to add, **write no message at all** — each structured change already renders
-its own row in the channel, so a message restating it is noise.
+If a request is only structured changes (status, severity, a field) and there's no extra
+context to add about the change, **write no message at all** — each structured change
+already renders its own row in the channel, so a message restating it is noise. Context
+is what responders did, found or decided that no update has said yet, such as the fix
+behind a resolve or the reason for a pause: when there is some, the message carries it.
+Resolving and closing also bring a stale summary up to date, as `references/lifecycle.md`
+says.
 
 ## Drafting versus posting
 

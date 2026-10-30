@@ -74,6 +74,24 @@ Resolving is a common point for a required-fields rejection (orgs often require 
 before resolution) — the required-fields ground rule covers how to handle it, and it
 isn't resolve-only.
 
+### Leave the record saying how it ended
+
+A responder resolving by hand brings the record up to date as they go, because the
+summary is what everyone reads afterwards, the postmortem included. Do the same: before
+the call, read the incident's summary and what responders have said and done since its
+last update, then in the same call:
+
+- **Set `summary`** when it no longer says what happened and how it ended — one that still
+  describes the alert that opened the incident, or a cause the responders have since ruled
+  out. Leave a current summary alone.
+- **Add a `message`** when responders did work since the last update that no update
+  covers: what they did and how it ended. Leave it out when the updates already tell
+  that story.
+
+Write both as `references/writing.md` says, from what responders established and never
+from your own theory. When the record holds too little to say how it ended, resolve
+without them rather than guess.
+
 ## Reopening — the asymmetry
 
 - **Declined** can be reopened: back to triage (undeclined) or straight to an active
