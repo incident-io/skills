@@ -65,6 +65,13 @@ this plugin; a skill is instructions for an agent, not knowledge for a person. A
 plugins at once ("are our skills healthy?") is the `doctor` skill's job — this skill
 works one skill at a time, from evidence about that skill.
 
+How the incident summaries and updates incident.io suggests are written — their sections,
+structure and tone — is set in
+[Settings → Summaries](https://app.incident.io/~/settings/summaries) and
+[Settings → Updates](https://app.incident.io/~/settings/updates) in the incident.io
+dashboard, not in a skill: those suggestions don't load skills. Point the user there
+instead of writing one.
+
 ## Ground rules
 - **Speak the user's language, not this skill's.** The user may not have read this
   file; say what you're doing plainly. While you're driving a job, each reply has this
