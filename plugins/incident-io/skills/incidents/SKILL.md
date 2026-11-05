@@ -56,7 +56,9 @@ You're working outside the incident channel, in a coding agent or a chat app, th
 incident.io plugin, the incident.io MCP server on its own, or the incident.io desktop app.
 Below, "the plugin" also means the MCP server on its own, since it has the same tools. You can't
 read the channel's messages, and what the user finds and changes here reaches neither the channel nor the investigation unless
-it's shared in words.
+it's shared in words. When the user states a finding or ships a fix, offer to post it to the incident's
+channel. Post only once they say yes, and only what they concluded; `references/writing.md` says how
+to write it.
 
 The organisation's configuration is the `config://organisation` resource from the incident.io
 tools (`resource_show` with that URI where the session can't read resources). `incident_pin`,
@@ -91,7 +93,8 @@ Work out which incident they mean before anything else:
 - **"I got paged", "what woke me up"**: their pages are the `on-call` skill's, and many
   have no incident. Once they've picked one that has, its incident is this skill's.
 - **Pinning** ("I'm on INC-123 now", "/incident INC-123"): on the desktop app,
-  `incident_pin(incident_id: …)` makes it the incident later asks resolve to; `unset: true`
+  `incident_pin(incident_id: …)` makes it the incident later asks resolve to. Pin it first,
+  before anything else the same message asks for, such as a catch-up. `unset: true`
   clears it and deletes its downloaded investigation files. Pinning doesn't add anyone to the
   incident or give them a role. On the plugin there is no pin, so say so and carry the
   reference yourself for the rest of the session.
