@@ -31,7 +31,7 @@ matching reference before acting, every time**.
   resolving can demand custom fields), and every rejected or repeated call is visible
   noise in the channel.
 - **Respond to something breaking** — declare, attach an alert, merge duplicates
-  ("there's an outage", "merge these") → read `references/responding.md` first. It
+  ("declare an incident", "merge these") → read `references/responding.md` first. It
   carries the duplicate check.
 - **Page someone, read pages or ack one** ("page the backend team", "I got paged") → the
   `on-call` skill owns paging and its safety rules; load it before an escalation tool.
