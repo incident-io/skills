@@ -13,13 +13,14 @@ the code.
 
 ## What the investigation found
 
-For "anything new?", find what changed before reading anything else. On the plugin,
-`investigation_sync(since: …)` with the time you last read it says what changed without reading
-the files. On the desktop app, `investigation_sync` fetches only what changed since its last
-download, and `investigation_timeline.md` says when each change came. `incident_update_list`
-has the updates. Report only what's new. When nothing is, say so, with where things stand in one
-line (whether the investigation is still running, and its leading hypothesis), and stop: the
-rest is a recap they didn't ask for, even when this session hasn't shown it to them.
+For "anything new?", find what changed before reading anything else.
+`investigation_sync(since: …)` with the `as_of` from your last call says what changed without
+reading the files. An older desktop app rejects `since`: there, `investigation_sync` alone
+downloads the files again and says what changed since its previous sync.
+`investigation_timeline.md` says when each change came. `incident_update_list` has the
+updates. Report only what's new. When nothing is, say so, with where things stand in one line
+(whether the investigation is still running, and its leading hypothesis), and stop: the rest
+is a recap they didn't ask for, even when this session hasn't shown it to them.
 
 `incident_show`'s `investigation` include gives the summary, the findings, its status (still
 running, finished, or none) and when it last changed, but not the evidence behind the findings.
