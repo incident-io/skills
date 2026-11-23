@@ -61,8 +61,8 @@ back.
 
 ## Starting or steering an investigation
 
-An AI investigation runs checks in the background — telemetry, recent code changes,
-similar past incidents — and builds a hypothesis from them. Which tool you need turns
+An AI investigation runs checks in the background, such as telemetry and similar past
+incidents, and builds a hypothesis from them. Which tool you need turns
 on one question: is one already running? None → `investigation_start`. One running →
 `investigation_steer`, which feeds new information in and redirects its focus.
 
@@ -83,8 +83,8 @@ something else, answer that first, then offer to feed it in.
 
 A steer carries the current hypothesis, the correction and the evidence (the file, the
 commit, the log line). It shows in the incident's channel under the user's name, and the
-investigation re-assesses within a few minutes: say that, rather than claiming the
-hypothesis has changed. A message posted to the channel is not a steer; the investigation doesn't read
+investigation takes it into account, but a changed hypothesis can take a while to appear:
+say that, rather than claiming the hypothesis has changed. A message posted to the channel is not a steer; the investigation doesn't read
 it.
 
 ## Capturing work as it happens
