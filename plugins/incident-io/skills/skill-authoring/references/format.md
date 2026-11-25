@@ -13,7 +13,7 @@ your-plugin/
 ├── skills/
 │   └── <dir-name>/
 │       ├── SKILL.md           — frontmatter (name, description, the provenance
-│       │                        stamp, optional client extras like argument-hint)
+│       │                        stamp, any client extras go under metadata)
 │       │                        + the instructions
 │       └── references/        — detail loaded only when a job needs it
 └── incident.yaml              — optional: sync settings, rarely needed

@@ -8,7 +8,6 @@ description: >
   specific system or piece of infrastructure: "what is X", "what breaks if X goes down",
   "where does X run", "do we have docs on X", or grounding a component before debugging
   it.
-argument-hint: "<an estate question to answer>"
 ---
 
 # Architecture

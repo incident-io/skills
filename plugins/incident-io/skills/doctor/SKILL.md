@@ -6,7 +6,6 @@ description: >
   whether their incident.io setup is healthy, what's degraded, or what to improve, in
   any phrasing — one-off or as a recurring review. Every finding routes to the thing
   that fixes it.
-argument-hint: "<a plugin or area to focus on — or nothing, to be shown what can be reviewed from here>"
 ---
 
 # Doctor

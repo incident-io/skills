@@ -5,7 +5,6 @@ description: >
   and your coding agents load. Use whenever you're writing, editing, or reviewing a
   skill in any way: creating one, improving one from usage feedback or a review
   brief, or asking what makes a good skill.
-argument-hint: "<what the skill should do — or the skill to improve and why>"
 ---
 
 # Skill authoring

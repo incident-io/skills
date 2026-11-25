@@ -7,7 +7,6 @@ description: >
   down what each system name actually means before anything is written. Use when asked
   to write, extend or improve architecture documentation, to document a system, or to
   fill a gap the `architecture` skill could not answer.
-argument-hint: "<the system or systems to document>"
 ---
 
 # Architecture author
