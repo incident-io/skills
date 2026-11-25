@@ -62,8 +62,6 @@ starts before both.
   gates that make the skill worth writing.
 - **Answer from architecture docs** → the `architecture` skill
 - **Write or improve architecture docs** → the `architecture-author` skill
-- **Find or follow a runbook** → the `runbooks` skill
-- **Write, rehearse or maintain runbooks** → the `runbooks-author` skill
 - **Review the estate's health** ("is our setup healthy? what's degraded?") → the
   `doctor` skill
 
