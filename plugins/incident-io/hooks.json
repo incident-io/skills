@@ -1,0 +1,11 @@
+{
+  "incident-io": {
+    "SessionStart": [
+      {
+        "command": "./hooks/report-telemetry antigravity",
+        "timeout": 5,
+        "type": "command"
+      }
+    ]
+  }
+}

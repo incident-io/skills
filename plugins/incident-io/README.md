@@ -45,7 +45,58 @@ and other operational knowledge belong in your own repositories, where they live
 code they describe and are reviewed like it. The skills here help you write that content
 well and keep it current.
 
+## Usage reporting
+
+When an agent session starts, the plugin runs `hooks/report-telemetry`. It tells us
+which version of the plugin you have and which agent it runs in. It is a short `sh`
+script that you can read, and it cannot block or fail a session.
+
+It sends at most one request a day for each agent, to
+`https://app.incident.io/api/agent_plugins/v1/telemetry`.
+
+### What we send
+
+```
+X-Incident-Plugin-Version: 1.20261007.771
+X-Incident-Plugin-Harness: claude-code
+X-Incident-Plugin-Channel: public
+
+{"key": "plugin:session", "install_id": "9b89b079-24ec-403e-89e2-e5e2513b718e"}
+```
+
+`install_id` is a random id for this installation, so we count it once. It is not derived
+from anything about you or your machine, and it is not linked to your incident.io
+account.
+
+We send nothing else. The script does not read your prompts, your conversation, your
+files or anything your agent passes to it.
+
+### What it keeps on your machine
+
+Two kinds of file, both under `~/.config/incident-io-plugin/`:
+
+- `installation-id` holds the random id. Delete it and the next report makes a new one.
+- `last-report-<agent>` holds the date and plugin version of the last report, so the
+  script reports once a day.
+
+### Turning it off
+
+```
+export INCIDENT_PLUGIN_TELEMETRY=off
+```
+
+Any capitalization of `off` works. Or create a file, which an admin can push centrally
+without editing everyone's shell profile:
+
+```
+touch ~/.config/incident-io-plugin/opt-out
+```
+
+With either one set, the script writes no files and makes no request.
+
 ## Privacy
 
 This plugin connects to your incident.io account through the bundled MCP server. See the
-[incident.io privacy policy](https://incident.io/privacy).
+[incident.io privacy policy](https://incident.io/privacy), and the
+"Usage reporting" section above for exactly what the plugin's own hooks send and how
+to turn them off.

@@ -1,0 +1,204 @@
+#!/bin/sh
+# Reports which plugin version is installed and which agent harness it runs in.
+#
+# Runs at session start and sends at most one request a day for each harness: the
+# plugin version, the harness name, the plugin's channel and a random installation id.
+# It never reads the payload the agent hands it. The plugin README says what is and is not sent.
+#
+# To turn it off, set INCIDENT_PLUGIN_TELEMETRY=off or create
+# ~/.config/incident-io-plugin/opt-out.
+#
+# POSIX sh only, and it always exits 0: a session must never fail because of this.
+
+# A harness name, passed only by a hooks file that one harness reads.
+harness_arg="${1:-}"
+
+# Antigravity needs a JSON object on stdout from every hook. Other harnesses show
+# stdout to the model.
+[ "$harness_arg" = antigravity ] && printf '{}\n'
+
+# Versioned, because a session keeps the hooks it started with. app, not api:
+# api.incident.io serves the public API only.
+endpoint="https://app.incident.io/api/agent_plugins/v1/telemetry"
+
+# Opt-out comes first, before anything is read, written or sent.
+case "${INCIDENT_PLUGIN_TELEMETRY:-}" in
+  [Oo][Ff][Ff]) exit 0 ;;
+esac
+config_dir="${XDG_CONFIG_HOME:-$HOME/.config}/incident-io-plugin"
+[ -e "$config_dir/opt-out" ] && exit 0
+# The README names this path, so it counts wherever XDG_CONFIG_HOME points.
+[ -e "$HOME/.config/incident-io-plugin/opt-out" ] && exit 0
+
+# Older versions of this plugin passed an event name. Those calls send nothing.
+case "$harness_arg" in
+  session|skill|tool) exit 0 ;;
+esac
+
+# Hooks run with a stripped PATH, so no external command is guaranteed.
+command -v curl >/dev/null 2>&1 || exit 0
+
+script_dir="${0%/*}"
+[ "$script_dir" = "$0" ] && script_dir="."
+
+# True when $1 is a short name that is safe to put in a header.
+is_safe() {
+  case "$1" in
+    '') return 1 ;;
+    *[!A-Za-z0-9._+-]*) return 1 ;;
+  esac
+  [ "${#1}" -le 32 ] || return 1
+  return 0
+}
+
+CR=$(printf '\r')
+
+# Reads the first line of a file into $_line1.
+read_first_line() {
+  _line1=''
+  [ -r "$1" ] || return 1
+  while IFS= read -r _l || [ -n "$_l" ]; do
+    _line1="$_l"
+    break
+  done <"$1"
+  # Git for Windows can check VERSION out with CRLF line endings.
+  _line1="${_line1%"$CR"}"
+  return 0
+}
+
+# True when $1 has the charset and length the endpoint accepts for an id.
+is_id() {
+  case "$1" in
+    '') return 1 ;;
+    *[!A-Za-z0-9_-]*) return 1 ;;
+  esac
+  [ "${#1}" -le 64 ] || return 1
+  return 0
+}
+
+# Reads this installation's random id into $install_id, minting one on first use. The
+# file is outside the plugin root because each harness installs its own copy of the
+# plugin. Leaves $install_id empty when it cannot mint or keep one.
+read_install_id() {
+  id_file="$config_dir/installation-id"
+  install_id=''
+  read_first_line "$id_file" && install_id="$_line1"
+  is_id "$install_id" && return 0
+  install_id=''
+  command -v tr >/dev/null 2>&1 || return 0
+  if command -v uuidgen >/dev/null 2>&1; then
+    install_id="$(uuidgen 2>/dev/null | tr '[:upper:]' '[:lower:]' | tr -d '"\\[:cntrl:]')"
+  fi
+  if [ -z "$install_id" ] && command -v od >/dev/null 2>&1; then
+    install_id="$(od -An -N16 -tx1 /dev/urandom 2>/dev/null | tr -d ' \n')"
+  fi
+  is_id "$install_id" || { install_id=''; return 0; }
+  mkdir -p "$config_dir" 2>/dev/null || { install_id=''; return 0; }
+  # noclobber: when two harnesses start together, only one creates the file.
+  _minted="$install_id"
+  ( set -C; printf '%s\n' "$_minted" >"$id_file" ) 2>/dev/null
+  install_id=''
+  read_first_line "$id_file" && install_id="$_line1"
+  is_id "$install_id" && return 0
+  install_id=''
+  # An empty file is one another harness has created and not yet written, so it is
+  # left alone and this report goes without an id.
+  [ -s "$id_file" ] || return 0
+  # Anything else is corrupt, so it is replaced.
+  ( printf '%s\n' "$_minted" >"$id_file" ) 2>/dev/null && install_id="$_minted"
+  return 0
+}
+
+# Sets $harness. A name passed as $1 wins. Otherwise it comes from the environment:
+# AI_AGENT first, then a variable the harness sets about itself. AI_AGENT is mapped to
+# one of our names and never sent as it is.
+#
+# Cursor is checked first because it sets CURSOR_VERSION for every hook, even when
+# started from another harness. The plugin root variables come last, because Codex and
+# Devin also set CLAUDE_PLUGIN_ROOT.
+detect_harness() {
+  if is_safe "$harness_arg"; then
+    harness="$harness_arg"
+    return 0
+  fi
+  if [ -n "${CURSOR_VERSION:-}" ]; then
+    harness=cursor
+    return 0
+  fi
+
+  if [ -n "${AI_AGENT:-}" ]; then
+    case "${AI_AGENT%%_*}" in
+      claude-code|claude|cowork) harness=claude-code ;;
+      cursor|cursor-cli) harness=cursor ;;
+      codex|codex-cli) harness=codex ;;
+      github-copilot|copilot) harness=copilot ;;
+      antigravity) harness=antigravity ;;
+      devin) harness=devin ;;
+      *) harness=other ;;
+    esac
+    return 0
+  fi
+
+  if [ -n "${CURSOR_TRACE_ID:-}${CURSOR_AGENT:-}" ] ||
+    [ "${CURSOR_EXTENSION_HOST_ROLE:-}" = agent-exec ]; then
+    harness=cursor
+  elif [ -n "${CODEX_SANDBOX:-}${CODEX_CI:-}${CODEX_THREAD_ID:-}${CODEX_SANDBOX_NETWORK_DISABLED:-}" ]; then
+    harness=codex
+  elif [ -n "${ANTIGRAVITY_AGENT:-}${ANTIGRAVITY_CLI_ALIAS:-}" ]; then
+    harness=antigravity
+  elif [ -n "${CLAUDECODE:-}${CLAUDE_CODE:-}" ]; then
+    harness=claude-code
+  elif [ -n "${COPILOT_MODEL:-}${COPILOT_ALLOW_ALL:-}${COPILOT_GITHUB_TOKEN:-}" ]; then
+    harness=copilot
+  elif [ -e /opt/.devin ] || [ -n "${DEVIN_PLUGIN_ROOT:-}" ]; then
+    harness=devin
+  elif [ -n "${PLUGIN_ROOT:-}" ]; then
+    harness=codex
+  elif [ -n "${CLAUDE_PLUGIN_ROOT:-}" ]; then
+    harness=claude-code
+  else
+    harness=unknown
+  fi
+}
+
+# The publish script writes VERSION beside this script.
+version=''
+read_first_line "$script_dir/VERSION" && version="$_line1"
+is_safe "$version" || version="unknown"
+
+# Which plugin this is. Set when the plugin is rendered, so the two differ by this line.
+channel=public
+
+detect_harness
+
+# At most one report a day for each harness and version. The marker holds the date and
+# version, so an upgrade reports the same day. Without `date`, every session reports.
+marker=''
+if command -v date >/dev/null 2>&1; then
+  stamp="$(date +%Y-%m-%d 2>/dev/null) $version"
+  marker="$config_dir/last-report-$harness"
+  read_first_line "$marker" && [ "$_line1" = "$stamp" ] && exit 0
+fi
+
+# Opting out exits before this, so an install that has opted out never gets an id.
+read_install_id
+body='{"key":"plugin:session"}'
+[ -n "$install_id" ] && body="{\"key\":\"plugin:session\",\"install_id\":\"$install_id\"}"
+
+# Detached, so a slow endpoint cannot hold up a session. The marker is written only
+# after the endpoint accepts the report (curl -f), so the next session retries a failed
+# send. The version and harness go in headers, so a bad release can be dropped without
+# parsing a body.
+(
+  curl -s -f -m 3 -X POST "$endpoint" \
+    -H 'Content-Type: application/json' \
+    -H "X-Incident-Plugin-Version: $version" \
+    -H "X-Incident-Plugin-Harness: $harness" \
+    -H "X-Incident-Plugin-Channel: $channel" \
+    -d "$body" >/dev/null 2>&1 || exit 0
+  [ -n "$marker" ] || exit 0
+  mkdir -p "$config_dir" 2>/dev/null
+  printf '%s\n' "$stamp" >"$marker"
+) >/dev/null 2>&1 &
+
+exit 0

@@ -1,0 +1,13 @@
+{
+  "hooks": {
+    "sessionStart": [
+      {
+        "bash": "R=\"${PLUGIN_ROOT}\"; sh \"${R:-${COPILOT_PLUGIN_ROOT:-${CLAUDE_PLUGIN_ROOT:-.}}}/hooks/report-telemetry\" copilot",
+        "powershell": "$r = \"${PLUGIN_ROOT}\"; if (-not $r) { $r = $env:PLUGIN_ROOT }; if (-not $r) { $r = $env:COPILOT_PLUGIN_ROOT }; if (-not $r) { $r = $env:CLAUDE_PLUGIN_ROOT }; if (-not $r) { $r = \".\" }; & \"$r/hooks/report-telemetry.cmd\" copilot",
+        "timeoutSec": 5,
+        "type": "command"
+      }
+    ]
+  },
+  "version": 1
+}
