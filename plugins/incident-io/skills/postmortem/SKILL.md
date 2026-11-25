@@ -58,12 +58,19 @@ template, and it exists straight away.
 
 | | what it is | what to use it for |
 |---|---|---|
-| **Reader's form** — `incident_show` with `include: ["postmortem"]` | the document as a person sees it: mentions are names, and the blocks that fill themselves in from the incident are the lists they display | reading, quoting, reviewing |
+| **Reader's form** — `incident_show` with `include: ["postmortem"]`, which is the primary document only | the document as a person sees it: mentions are names, and the blocks that fill themselves in from the incident are the lists they display | reading, quoting, reviewing |
 | **Editable form** — `postmortem_show` | the same document with those parts as HTML tags carrying their IDs | the only valid source of anchors for an edit |
 
 Reading the reader's form and then editing from it is the most common way to waste a
 call: that text is not in the document, so nothing matches it. Read the form that fits
 the job you are about to do.
+
+**`incident_show` only ever returns the primary document.** It takes an incident, not a
+document `id`, so it cannot give you any other. When the document chosen in step 1 is not
+the primary one, read it with `postmortem_show` and its `id`, for reading and reviewing as well as
+editing: the tags stand where the names and lists would be. Before you quote or
+review anything, check that the `id` of what you read is the `id` that was chosen.
+Reviewing the primary document when the user picked another is the same silent mistake.
 
 **Read `format://postmortem-document`** before writing a tag you cannot copy from the
 document in front of you. It lists every tag, its attributes and an example, and it is
@@ -291,8 +298,7 @@ Some incidents have no telemetry. That is not a finding.
 
 A review suggests; it does not write. When the user asks you to make the change rather
 than describe it, go back to **Editing** above — and read the document with
-`postmortem_show` first, because the text you quoted in the review came from the reader's
-form and will not match.
+`postmortem_show` first, because text you quoted from the reader's form will not match.
 
 A gap the review exposes — missing monitoring, a process that did not work — is worth a
 follow-up rather than a sentence in the document. Create one when the user asks, or offer
