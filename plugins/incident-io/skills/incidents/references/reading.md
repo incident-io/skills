@@ -50,6 +50,42 @@ nothing" only when an investigation finished with no hypothesis and no findings.
 hypothesis with no findings behind it is still an answer: report it, and say how little it
 rests on.
 
+## Keep up with the incident while they work on it
+
+An open incident keeps changing while you work, and a new update or finding can undercut the fix
+you're writing. So while they debug or follow along with one that isn't resolved and has an
+investigation, keep up with it.
+
+- **Ask how they're working on it.** End your first report by asking once, with your question
+  tool where you have one: "Are you debugging INC-123 or following along?", headed "INC-123",
+  with three options. `investigation_sync` may ask you to put the same question: ask it once,
+  not twice.
+  - "Debugging": the team sees they're on it, and you keep them updated.
+  - "Following along": you keep them updated.
+  - "Neither": you don't watch for updates.
+- **Watch it** when they're debugging or following along. Where you can schedule a recurring
+  prompt (in Claude Code, `CronCreate`; in Cursor, its `/loop` skill), schedule a check every 5
+  minutes, with a prompt that says to reply with nothing when nothing changed, or only "No change
+  on INC-123." where a reply is required, and to stop watching, as below, once the incident is
+  resolved or after 10 minutes with nothing new and no message from them. Confirm in a short line ("I'll keep an eye on INC-123
+  and tell you if anything changes"), without the interval or when it stops. Never imitate a
+  schedule by sleeping or looping in the foreground: it blocks the conversation. Where you can't
+  schedule, say once that you'll check before each reply.
+- **Each check** calls `investigation_sync` with `since` set to the last check and reads only
+  `changes_since`, fetching the archive only when a change needs its evidence. Say nothing when
+  nothing changed. When something did, say what in two or three lines and whether it bears on
+  what you're doing, plainly if it contradicts it. Describe what changed and what it means for
+  the fix, in plain words with the investigation's confidence, not how it recorded or graded the
+  change.
+- **Check last, just before each reply** about the incident, and before writing a fix or posting
+  a conclusion, whether or not a schedule is running, unless they chose "Neither".
+- **Stop** when they ask, when the incident is resolved, or after 10 minutes of checks with
+  nothing new and no message from them: cancel the schedule (in Cursor, end the loop's process)
+  and say so in a line. After a quiet stretch, that line is "I've stopped watching INC-123. When
+  you next message, I'll start watching again." When they next write after a quiet stretch, check
+  first, then schedule it again without asking. Don't restart it after they asked you to stop or
+  once the incident is resolved.
+
 ## Answer provenance from the evidence
 
 When someone asks how something is known — why the investigation suspects a change, where
