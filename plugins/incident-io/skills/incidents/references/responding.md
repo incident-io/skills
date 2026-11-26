@@ -1,6 +1,6 @@
 # Responding
 
-The judgement calls when something is breaking: whether to declare, attach or merge —
+The judgement calls when something is breaking: whether to declare, attach, merge or relate —
 and how to do each safely. Paging someone is the `on-call` skill's. Status mechanics (accepting, pausing, resolving)
 live in `references/lifecycle.md`.
 
@@ -58,6 +58,14 @@ The judgement:
 deriving the target from that incident's own history. It restores the status the
 incident held before the merge, and it's the only way to bring a merged incident
 back.
+
+## Marking incidents as related
+
+When incidents are connected but are different problems (one caused the other, or they
+share a symptom), relate them with `incident_relationship_create` rather than merging.
+Each incident then lists the other under "Related incidents". Relating incidents that are
+already related succeeds without a second link, so don't check first. A link attachment
+is not a substitute: it doesn't mark the incidents as related.
 
 ## Starting or steering an investigation
 
