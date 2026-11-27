@@ -92,7 +92,8 @@ back, so:
 - **Draft a path unless it's the only fit.** Draft when the path search returns more than one
   path or the team links to several, even when one looks best; when the user only agreed to
   a path you offered ("Sure"); when the ask comes with a condition or a wait ("if it gets
-  worse", "tomorrow"); or when they want a quiet page, since a path keeps its own urgency.
+  worse", "tomorrow"); or when they want a quiet page, since a path keeps its own
+  interruption level.
 - **Adding isn't paging.** "Add the on-call to this channel" or "loop them in, no action
   needed" asks for them to follow along: don't page them.
 - **A question isn't a request.** "Can you page the backend team?" or "who's first-line on
