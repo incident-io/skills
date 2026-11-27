@@ -24,9 +24,9 @@ matching reference before acting, every time**.
   "who's leading", "catch me up", "what has the investigation found") → read
   `references/reading.md` first. It says how to read just what the task needs, and which
   lists truncate.
-- **Change the incident** — status, severity, pause, resolve, close, roles, fields
-  ("bump to P1", "accept this", "resolve it", "pause until Monday") → read
-  `references/lifecycle.md` first. The tools reject transitions for reasons it explains
+- **Change the incident** — status, severity, pause, resolve, close, name, roles, fields
+  ("bump to P1", "accept this", "resolve it", "pause until Monday", "rename the channel")
+  → read `references/lifecycle.md` first. The tools reject transitions for reasons it explains
   (accept needs a type in the same call; triage can't be resolved, paused, or canceled;
   resolving can demand custom fields), and every rejected or repeated call is visible
   noise in the channel.
@@ -112,7 +112,10 @@ Work out which incident they mean before anything else:
 - **Custom fields**: org-defined metadata (affected team, region, customer…).
 - **Timestamps**: when key moments happened. Most are set automatically as the
   incident progresses; a few are yours to set.
-- **Channel**: where the humans respond (Slack or Teams). Updates you post land here.
+- **Channel**: where the humans respond (Slack or Teams). Updates you post land here. Its
+  name comes from the incident's name, using the organisation's channel name format. To
+  rename the channel, rename the incident (`incident_update` with `name`), then say the
+  channel follows.
 
 Hanging off it: **alerts** (may have triggered it), **escalations** (pages sent to
 people), **updates** (the running narrative), **actions** (work to fix it *now*) versus
