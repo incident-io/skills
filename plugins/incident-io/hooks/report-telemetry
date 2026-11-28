@@ -94,18 +94,29 @@ read_install_id() {
   fi
   is_id "$install_id" || { install_id=''; return 0; }
   mkdir -p "$config_dir" 2>/dev/null || { install_id=''; return 0; }
-  # noclobber: when two harnesses start together, only one creates the file.
+  # Write the id to a private file, then link it into place. A link fails when the name
+  # exists, so only one of several harnesses starting together claims it, and the file
+  # already holds its id when it appears. Creating the file and then writing to it would
+  # let another harness read it empty and take it for corrupt.
   _minted="$install_id"
-  ( set -C; printf '%s\n' "$_minted" >"$id_file" ) 2>/dev/null
+  _tmp="$id_file.$$"
+  ( set -C; printf '%s\n' "$_minted" >"$_tmp" ) 2>/dev/null || { install_id=''; return 0; }
+  if ! ln "$_tmp" "$id_file" 2>/dev/null && [ ! -e "$id_file" ]; then
+    # No hard links here, so fall back to a rename, which is still never half written.
+    mv -f "$_tmp" "$id_file" 2>/dev/null
+  fi
+  rm -f "$_tmp" 2>/dev/null
   install_id=''
   read_first_line "$id_file" && install_id="$_line1"
   is_id "$install_id" && return 0
   install_id=''
-  # An empty file is one another harness has created and not yet written, so it is
-  # left alone and this report goes without an id.
+  # An empty file is one an earlier release of this hook has created and not yet written,
+  # so it is left alone and this report goes without an id.
   [ -s "$id_file" ] || return 0
   # Anything else is corrupt, so it is replaced.
-  ( printf '%s\n' "$_minted" >"$id_file" ) 2>/dev/null && install_id="$_minted"
+  printf '%s\n' "$_minted" >"$_tmp" 2>/dev/null &&
+    mv -f "$_tmp" "$id_file" 2>/dev/null && install_id="$_minted"
+  rm -f "$_tmp" 2>/dev/null
   return 0
 }
 
